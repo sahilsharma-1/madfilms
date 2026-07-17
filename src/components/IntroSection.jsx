@@ -64,22 +64,23 @@ export default function IntroSection() {
         </div>
 
         {/* Right Column */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative h-64 w-full overflow-hidden rounded-2xl bg-black shadow-2xl sm:h-80 md:h-96 lg:h-[430px] lg:rounded-[28px]"
-        >
-          <iframe
-            className="absolute inset-0 h-full w-full"
-            src="https://www.youtube.com/embed/OPvvoq3CX8Q?autoplay=1&mute=1&loop=1&playlist=OPvvoq3CX8Q&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&rel=0&playsinline=1"
-            title="madfilm Showreel"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen={false}
-          />
-        </motion.div>
+<motion.div
+  initial={{ opacity: 0, scale: 0.96 }}
+  whileInView={{ opacity: 1, scale: 1 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.7 }}
+  className="relative h-64 w-full overflow-hidden rounded-2xl bg-black shadow-2xl sm:h-80 md:h-96 lg:h-[430px] lg:rounded-[28px]"
+>
+  <iframe
+    className="absolute inset-0 h-full w-full"
+    src="https://1drv.ms/v/c/9D204D9914DB706E/IQQszjHWTw5tSpAiJtm918jfASEGmoYh_Cl3aLhkr11kPkg"
+    title="MADFILMS Showreel"
+    frameBorder="0"
+    scrolling="no"
+    allow="autoplay; fullscreen"
+    allowFullScreen
+  />
+</motion.div>
       </div>
     </section>
   );

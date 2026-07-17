@@ -2,10 +2,10 @@
 import { motion } from "framer-motion";
 
 const TEAM = [
-  { name: "Sahil Kapoor", role: "Founder / Director", img: "/images/hero.jpg" },
-  { name: "Riya Menon", role: "Head of Cinematography", img: "/images/hero2.jpg" },
-  { name: "Arjun Verma", role: "Editor & Colorist", img: "/images/hero3.jpg" },
-  { name: "Neha Shah", role: "Producer", img: "/images/hero.jpg" },
+  { name: "Sahil Sharma", role: "cinematics", img: "/images/heromobile.jpg" },
+  { name: "Rupesh Rao", role: "motion design", img: "/images/hero2.jpg" },
+  { name: "Yashi", role: "storywriter", img: "/images/hero3.jpg" },
+  { name: "Shruti", role: "Creator", img: "/images/hero.jpg" },
 ];
 
 export default function Team() {

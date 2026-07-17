@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 // (youtube.com/@zeliosagency). Swap these for your own reels whenever you
 // have them — cards are randomly assigned one each page load.
 const VIDEO_POOL = [
-  "n2hFQGoHJZY",
+  "uCD9-lq4_uE",
   "wMLfK9ZWn_A",
-  "J2ZaHBNorls",
+  "za_J0ClYXKo",
   "NPqJjlVNuV8",
-  "dTolKTTrbh4",
+  "e-zTW-Vexpc",
   "zSatDgjE-wk",
-  "oIHsfOKr-5o",
+  "hNinbglyK6E",
   "0r5473B9A9s",
   "fYeY3-6StHo",
 ];
