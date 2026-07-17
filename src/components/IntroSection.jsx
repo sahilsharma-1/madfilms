@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 export default function IntroSection() {
   return (
-    <section className="bg-[#F4F1EA] px-8 py-28 md:px-16">
-      <div className="mx-auto grid max-w-7xl items-center gap-20 lg:grid-cols-2">
+    <section className="bg-[#F4F1EA] px-5 py-16 sm:px-8 sm:py-20 md:px-16 md:py-28">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-20">
         {/* Left Column */}
         <div>
           <motion.div
@@ -14,8 +14,8 @@ export default function IntroSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-sm uppercase tracking-[5px] text-neutral-900">
-              A NEW ERA OF BUSINESSES
+            <p className="text-xs uppercase tracking-[3px] text-neutral-900 sm:text-sm sm:tracking-[5px]">
+              A New Era of Businesses
             </p>
 
             <motion.div
@@ -23,7 +23,7 @@ export default function IntroSection() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="mt-6 h-px w-full origin-left bg-neutral-900/30"
+              className="mt-5 h-px w-full origin-left bg-neutral-900/30 sm:mt-6"
             />
           </motion.div>
 
@@ -32,13 +32,11 @@ export default function IntroSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-10 text-5xl leading-[1.1] text-neutral-900 md:text-6xl"
+            className="mt-6 text-3xl leading-[1.15] text-neutral-900 sm:mt-8 sm:text-4xl md:mt-10 md:text-5xl lg:text-6xl lg:leading-[1.1]"
           >
             Your shortcut to{" "}
-            <span className="font-serif italic">
-              cinematic work
-            </span>{" "}
-            at campaign speed
+            <span className="font-serif italic">cinematic work</span> at
+            campaign speed
           </motion.h2>
 
           <motion.p
@@ -46,7 +44,7 @@ export default function IntroSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-10 max-w-xl text-xl leading-9 text-neutral-700"
+            className="mt-6 max-w-xl text-base leading-7 text-neutral-700 sm:mt-8 sm:text-lg md:mt-10 md:text-xl md:leading-9"
           >
             AI-assisted production is a smarter way to keep pace with the
             marketing calendar, without cutting corners on craft.
@@ -59,7 +57,7 @@ export default function IntroSection() {
             transition={{ duration: 0.6, delay: 0.3 }}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="mt-12 rounded-full bg-black px-8 py-4 text-white font-medium"
+            className="mt-8 w-full rounded-full bg-black px-8 py-3.5 font-medium text-white sm:w-auto sm:py-4 md:mt-12"
           >
             Book a Call
           </motion.button>
@@ -67,21 +65,21 @@ export default function IntroSection() {
 
         {/* Right Column */}
         <motion.div
-  initial={{ opacity: 0, scale: 0.96 }}
-  whileInView={{ opacity: 1, scale: 1 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.7 }}
-  className="relative h-[430px] w-full overflow-hidden rounded-[28px] shadow-2xl bg-black"
->
-  <iframe
-  className="absolute inset-0 h-full w-full"
-  src="https://www.youtube.com/embed/OPvvoq3CX8Q?autoplay=1&mute=1&loop=1&playlist=OPvvoq3CX8Q&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&rel=0&playsinline=1"
-  title="MAD Films Showreel"
-  allow="autoplay; encrypted-media; picture-in-picture"
-  referrerPolicy="strict-origin-when-cross-origin"
-  allowFullScreen={false}
-/>
-</motion.div>
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="relative h-64 w-full overflow-hidden rounded-2xl bg-black shadow-2xl sm:h-80 md:h-96 lg:h-[430px] lg:rounded-[28px]"
+        >
+          <iframe
+            className="absolute inset-0 h-full w-full"
+            src="https://www.youtube.com/embed/OPvvoq3CX8Q?autoplay=1&mute=1&loop=1&playlist=OPvvoq3CX8Q&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&rel=0&playsinline=1"
+            title="madfilm Showreel"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen={false}
+          />
+        </motion.div>
       </div>
     </section>
   );
