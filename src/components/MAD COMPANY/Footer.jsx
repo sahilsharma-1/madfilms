@@ -1,15 +1,17 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { studios } from "./studios";
+import { RevealStagger, RevealItem } from "./Reveal";
 
 const SOCIALS = ["Instagram", "LinkedIn", "X", "YouTube"];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#060608] px-6 pb-10 pt-16 lg:px-10">
+    <footer className="relative border-t border-white/10 bg-[#060608] px-6 pb-10 pt-16 lg:px-10">
+      <div aria-hidden className="mad-gradient-bg absolute inset-x-0 top-0 h-px opacity-60" />
       <div className="mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
+        <RevealStagger className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4" stagger={0.06}>
+          <RevealItem>
             <Link href="/" className="flex items-center gap-2 font-display">
               <span className="text-2xl font-extrabold text-white">MAD</span>
               <span className="mad-gradient-bg rounded-full px-2.5 py-0.5 font-body text-xs font-semibold text-white">
@@ -27,9 +29,23 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-          </div>
 
-          <div>
+            <div className="mt-6 flex max-w-xs items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] p-1.5">
+              <input
+                type="email"
+                placeholder="Work email"
+                className="w-full bg-transparent px-3 py-1.5 font-body text-sm text-white placeholder:text-white/30 focus:outline-none"
+              />
+              <button className="mad-gradient-bg shrink-0 rounded-full px-4 py-1.5 font-body text-xs font-semibold text-white transition hover:opacity-90">
+                Subscribe
+              </button>
+            </div>
+            <p className="mt-2 font-body text-[11px] text-white/35">
+              Studio notes, once a month. No spam.
+            </p>
+          </RevealItem>
+
+          <RevealItem>
             <p className="font-mono-mad text-xs uppercase tracking-widest text-white/40">
               Companies
             </p>
@@ -42,9 +58,9 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </RevealItem>
 
-          <div>
+          <RevealItem>
             <p className="font-mono-mad text-xs uppercase tracking-widest text-white/40">
               Company
             </p>
@@ -52,12 +68,12 @@ export default function Footer() {
               <li><a href="#" className="transition hover:text-white">About</a></li>
               <li><a href="#team" className="transition hover:text-white">Team</a></li>
               <li><a href="#careers" className="transition hover:text-white">Careers</a></li>
-              <li><a href="#" className="transition hover:text-white">Insights</a></li>
-              <li><a href="#" className="transition hover:text-white">Portfolio</a></li>
+              <li><a href="#insights" className="transition hover:text-white">Insights</a></li>
+              <li><a href="#work" className="transition hover:text-white">Portfolio</a></li>
             </ul>
-          </div>
+          </RevealItem>
 
-          <div>
+          <RevealItem>
             <p className="font-mono-mad text-xs uppercase tracking-widest text-white/40">
               Get in touch
             </p>
@@ -72,8 +88,8 @@ export default function Footer() {
                 <MapPin size={15} className="text-white/40" /> Remote-first, everywhere
               </li>
             </ul>
-          </div>
-        </div>
+          </RevealItem>
+        </RevealStagger>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 font-body text-xs text-white/40 sm:flex-row">
           <p>© {new Date().getFullYear()} MAD Company. All rights reserved.</p>

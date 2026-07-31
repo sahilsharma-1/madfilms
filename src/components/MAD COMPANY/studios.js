@@ -1,6 +1,14 @@
 // Central source of truth for the 8 MAD studios.
 // Edit this file to rename, reorder, add, or remove studios —
 // the navbar mega-menu and the homepage grid both read from here.
+//
+// `image` / `video` are optional: set either one and the studio's
+// card on the homepage will show it behind the text on hover
+// (video takes priority over image if both are set).
+//
+// `image` currently points at Picsum (picsum.photos) placeholder
+// photography so nothing on the page looks empty — swap each one
+// for real studio/project stills whenever you have them.
 
 export const studios = [
   {
@@ -11,6 +19,8 @@ export const studios = [
     href: "/madfilms",
     icon: "Clapperboard",
     gradient: ["#0064fa", "#7c3aff"],
+    image: "https://picsum.photos/seed/mad-films/800/600", // e.g. "/studios/films.jpg"
+    video: "", // e.g. "/studios/films.mp4"
   },
   {
     slug: "tech",
@@ -20,6 +30,8 @@ export const studios = [
     href: "/companies/tech",
     icon: "Code2",
     gradient: ["#7c3aff", "#b23aff"],
+    image: "https://picsum.photos/seed/mad-tech/800/600",
+    video: "",
   },
   {
     slug: "mind",
@@ -29,6 +41,8 @@ export const studios = [
     href: "/companies/mind",
     icon: "BrainCircuit",
     gradient: ["#b23aff", "#f726a8"],
+    image: "https://picsum.photos/seed/mad-mind/800/600",
+    video: "",
   },
   {
     slug: "reality",
@@ -38,6 +52,8 @@ export const studios = [
     href: "/reality",
     icon: "Glasses",
     gradient: ["#0064fa", "#00c2ff"],
+    image: "https://picsum.photos/seed/mad-reality/800/600",
+    video: "",
   },
   {
     slug: "growth",
@@ -47,6 +63,8 @@ export const studios = [
     href: "/companies/growth",
     icon: "TrendingUp",
     gradient: ["#f726a8", "#ff7a45"],
+    image: "https://picsum.photos/seed/mad-growth/800/600",
+    video: "",
   },
   {
     slug: "cloud",
@@ -56,6 +74,8 @@ export const studios = [
     href: "/companies/cloud",
     icon: "Cloud",
     gradient: ["#00c2ff", "#0064fa"],
+    image: "https://picsum.photos/seed/mad-cloud/800/600",
+    video: "",
   },
   {
     slug: "data",
@@ -65,6 +85,8 @@ export const studios = [
     href: "/companies/data",
     icon: "BarChart3",
     gradient: ["#7c3aff", "#0064fa"],
+    image: "https://picsum.photos/seed/mad-data/800/600",
+    video: "",
   },
   {
     slug: "labs",
@@ -74,5 +96,7 @@ export const studios = [
     href: "/companies/labs",
     icon: "FlaskConical",
     gradient: ["#f726a8", "#7c3aff"],
+    image: "https://picsum.photos/seed/mad-labs/800/600",
+    video: "",
   },
 ];

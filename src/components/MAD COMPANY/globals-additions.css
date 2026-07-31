@@ -67,11 +67,81 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* ---------- animated placeholder gradient ----------
+   Used by <VideoBackground> whenever no `sources`/`poster` has
+   been supplied yet, so hero/CTA sections never show an empty box
+   while real video/image assets are still being added. */
+@keyframes mad-placeholder-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.mad-placeholder-gradient {
+  background: linear-gradient(120deg, rgba(0, 100, 250, 0.25), rgba(124, 58, 255, 0.2), rgba(247, 38, 168, 0.25));
+  background-size: 200% 200%;
+  animation: mad-placeholder-shift 10s ease-in-out infinite;
+}
+
+/* ---------- film-grain texture ----------
+   Optional overlay for background video/images — pass `grain` to
+   <VideoBackground> to give a premium, less-flat-video look. */
+.mad-grain {
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- cursor-tracked spotlight ----------
+   Add alongside an onMouseMove handler that sets --x / --y (see
+   CompaniesShowcase.jsx / Testimonials.jsx) for a soft glow that
+   follows the pointer across a card. */
+.mad-spotlight {
+  position: relative;
+}
+.mad-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(500px circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.08), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.mad-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* ---------- shimmering pill border ----------
+   Used on the Hero eyebrow badge for a subtle "alive" accent. */
+@keyframes mad-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.mad-shimmer-border {
+  position: relative;
+}
+.mad-shimmer-border::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  background-size: 200% 100%;
+  animation: mad-shimmer 3.2s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mad-marquee-track,
   .mad-marquee-track-slow,
   .mad-marquee-track-reverse,
-  .animate-mad-blob {
+  .animate-mad-blob,
+  .mad-placeholder-gradient,
+  .mad-shimmer-border::after {
     animation: none !important;
   }
 }
