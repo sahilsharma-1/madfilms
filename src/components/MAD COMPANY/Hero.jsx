@@ -1,236 +1,155 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowUpRight, Sparkles, PlayCircle, ChevronDown } from "lucide-react";
+import { ArrowUpRight, Play, Sparkles, CircleCheckBig } from "lucide-react";
 import VideoBackground from "./VideoBackground";
+import DashboardMockup from "./DashboardMockup";
 import Magnetic from "./Magnetic";
-import AnimatedCounter from "./AnimatedCounter";
 import { Reveal } from "./Reveal";
+import { motion } from "framer-motion";
 
-const EASE = [0.21, 0.47, 0.32, 0.98];
-const HEADLINE = "This is MAD.";
-
-// Drop your reel(s) in /public/videos and list them here — they'll
-// autoplay muted and crossfade. Leave empty and Hero falls back to
-// HERO_POSTER (a full-bleed still), so nothing looks broken while
-// real video assets are still being added.
+// Background loop — plays these 3 in order, then wraps back to the first.
+// Files live in /public/videos/. Swap for your own brand reel any time,
+// just keep the paths pointing at real files with the right extension.
 const HERO_VIDEOS = [
+  // "/videos/arvrhero.mp4",
+  // "/videos/metal-human.mp4",
+  // "/videos/sea-storm.mp4",
   "/videos/moon-walk.mp4",
-];
-const HERO_POSTER = "";
-
-const STATS = [
-  { value: "150+", label: "Projects shipped" },
-  { value: "40+", label: "Brands served" },
-  { value: "8", label: "Studios, one roof" },
-  { value: "12", label: "Countries reached" },
-];
-
-const RIBBON_WORDS = [
-  "3D ANIMATION",
-  "AI AGENTS",
-  "WEB & APP DEV",
-  "AR / VR",
-  "WHATSAPP AUTOMATION",
-  "PERFORMANCE MARKETING",
-  "CGI & VFX",
-  "CLOUD & DEVOPS",
-];
-
-// A quick, tilted preview of recent work sitting under the fold —
-// swap each `image` for a real project still whenever you have one.
-const SHOWCASE = [
-  { label: "MAD Films", tag: "CGI & VFX", image: "https://picsum.photos/seed/mad-hero-films/700/560" },
-  { label: "MAD Tech", tag: "Product", image: "https://picsum.photos/seed/mad-hero-tech/700/560" },
-  { label: "MAD Mind", tag: "AI Agents", image: "https://picsum.photos/seed/mad-hero-mind/700/560" },
+  // "https://assets.mixkit.co/q6cmteclv5i8dsbayhbm6uojy9bu",
 ];
 
 export default function Hero() {
-  const words = HEADLINE.split(" ");
-
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#060608] pb-28 pt-40 lg:pt-48">
-      {/* Background video / placeholder */}
+    <section className="relative overflow-hidden bg-[#060608] pb-24 pt-40 lg:pb-32 lg:pt-48">
       <VideoBackground
         sources={HERO_VIDEOS}
-        poster={HERO_POSTER}
-        overlay="bg-black/70"
+        overlay="bg-[#060608]/80"
         grain
-        className="z-[1]"
-      />
-
-      {/* Gradient overlay so the bottom always blends into the page bg */}
-      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-black/20 via-black/50 to-[#060608]" />
-
-      {/* Ambient blobs */}
-      <div
-        aria-hidden
-        className="animate-mad-blob pointer-events-none absolute -left-32 top-24 z-[3] h-96 w-96 rounded-full opacity-30 blur-[110px]"
-        style={{ background: "radial-gradient(circle, #0064fa, transparent 70%)" }}
+        className="opacity-40"
       />
       <div
         aria-hidden
-        className="animate-mad-blob pointer-events-none absolute -right-24 top-52 z-[3] h-[28rem] w-[28rem] rounded-full opacity-30 blur-[120px]"
-        style={{ animationDelay: "4s", background: "radial-gradient(circle, #f726a8, transparent 70%)" }}
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+        }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto max-w-5xl px-6 text-center lg:px-10">
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: EASE }}
-          className="mad-shimmer-border mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 font-body text-xs font-medium text-white/70 backdrop-blur"
-        >
-          <Sparkles size={14} className="text-white/70" />
-          8 studios. One house. Zero average.
-        </motion.div>
-
-        <h1 className="font-display text-6xl font-extrabold leading-[0.95] tracking-tight text-white sm:text-7xl lg:text-8xl">
-          {words.map((word, i) => (
-            <motion.span
-              key={word + i}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 + i * 0.08, ease: EASE }}
-              className={`inline-block ${word === "MAD." ? "mad-gradient-text" : ""}`}
-            >
-              {word}
-              {i < words.length - 1 ? "\u00A0" : ""}
-            </motion.span>
-          ))}
-        </h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4, ease: EASE }}
-          className="mx-auto mt-6 max-w-2xl font-body text-lg text-white/70 sm:text-xl"
-        >
-          One house of creative and technology studios — film, product,
-          AI, XR, and growth — so your brand runs on one contract instead
-          of five agencies pointing fingers at each other.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: EASE }}
-          className="mt-9 flex flex-wrap items-center justify-center gap-4"
-        >
-          <Magnetic>
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-10 lg:px-10">
+        {/* Copy column */}
+        <div>
+          <Reveal>
             <a
-              href="#contact"
-              className="mad-gradient-bg inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-sm font-semibold text-white shadow-[0_0_40px_-10px_rgba(124,58,255,0.6)] transition hover:shadow-[0_0_55px_-8px_rgba(124,58,255,0.85)]"
+              href="#"
+              className="mad-shimmer-border inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 font-body text-xs font-medium text-white/80"
             >
-              Get an estimate
-              <ArrowUpRight size={16} />
+              <Sparkles size={13} className="text-[#00C2FF]" />
+              Introducing MAD Agents — autonomous AI workflows
+              <ArrowUpRight size={13} />
             </a>
-          </Magnetic>
+          </Reveal>
 
-          <Magnetic strength={0.25}>
-            <a
-              href="#companies"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-3.5 font-body text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
-            >
-              <PlayCircle size={16} />
-              Explore our companies
-            </a>
-          </Magnetic>
-        </motion.div>
+          <Reveal delay={0.08}>
+            <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-[4.2rem]">
+              Run your entire{" "}
+              <span className="mad-gradient-text">operation on autopilot.</span>
+            </h1>
+          </Reveal>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="mt-5 font-body text-xs text-white/40"
-        >
-          No lock-in contracts&nbsp;&nbsp;·&nbsp;&nbsp;Dedicated pod per client&nbsp;&nbsp;·&nbsp;&nbsp;NDA on request
-        </motion.p>
+          <Reveal delay={0.16}>
+            <p className="mt-6 max-w-lg font-body text-lg leading-relaxed text-white/60">
+              MAD is the AI operations platform that connects your tools, automates
+              the busywork, and gives your team one place to see everything that
+              matters — without writing a line of code.
+            </p>
+          </Reveal>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.7, ease: EASE }}
-          className="mx-auto mt-12 flex max-w-2xl flex-wrap items-center justify-center divide-x divide-white/10 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl"
-        >
-          {STATS.map((s) => (
-            <div key={s.label} className="min-w-[140px] flex-1 px-6 py-6 text-center">
-              <p className="font-display text-3xl font-bold text-white">
-                <AnimatedCounter value={s.value} />
-              </p>
-              <p className="mt-2 font-mono-mad text-[11px] uppercase tracking-[0.25em] text-white/50">
-                {s.label}
-              </p>
+          <Reveal delay={0.24}>
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <Magnetic>
+                <a
+                  href="#pricing"
+                  className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-sm font-semibold text-white transition hover:scale-[1.03]"
+                  style={{
+                    background: "linear-gradient(90deg,#0064FA,#00C2FF)",
+                    boxShadow: "0 0 45px rgba(0,150,255,.35)",
+                  }}
+                >
+                  Start free trial
+                  <ArrowUpRight size={16} />
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.25}>
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 font-body text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
+                >
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10">
+                    <Play size={11} className="ml-0.5 fill-white text-white" />
+                  </span>
+                  Watch demo
+                </a>
+              </Magnetic>
             </div>
-          ))}
-        </motion.div>
-      </div>
+          </Reveal>
 
-      {/* Work showcase — tilted preview cards */}
-      <Reveal delay={0.15} className="relative z-10 mx-auto mt-20 hidden max-w-5xl px-6 sm:block lg:px-10">
-        <div className="flex items-end justify-center gap-6">
-          {SHOWCASE.map((item, i) => (
-            <div
-              key={item.label}
-              className={`group relative w-1/3 overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50 transition duration-500 hover:z-20 hover:!rotate-0 hover:scale-105 ${
-                i === 0
-                  ? "rotate-[-6deg] translate-y-3"
-                  : i === 1
-                    ? "z-10 rotate-0 scale-105"
-                    : "rotate-[6deg] translate-y-3"
-              }`}
-            >
-              <div className="aspect-[4/3] w-full overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={item.image}
-                  alt={item.label}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <p className="font-mono-mad text-[10px] uppercase tracking-widest text-white/60">
-                  {item.tag}
-                </p>
-                <p className="font-display text-sm font-bold text-white">{item.label}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Reveal>
-
-      {/* Gradient ribbon marquee */}
-      <div className="pointer-events-none relative z-10 mt-20 w-full overflow-hidden">
-        <div className="mad-gradient-bg w-[120%] -translate-x-[10%] rotate-[-2deg] overflow-hidden py-3">
-          <div className="mad-marquee-track flex w-max items-center gap-10 whitespace-nowrap">
-            {[...RIBBON_WORDS, ...RIBBON_WORDS].map((word, i) => (
-              <span key={i} className="font-display text-sm font-bold tracking-wide text-black">
-                {word}
-                <span className="mx-4 opacity-50">✦</span>
+          <Reveal delay={0.32}>
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 font-body text-xs text-white/45">
+              <span className="flex items-center gap-1.5">
+                <CircleCheckBig size={14} className="text-emerald-400" />
+                No credit card required
               </span>
-            ))}
-          </div>
+              <span className="flex items-center gap-1.5">
+                <CircleCheckBig size={14} className="text-emerald-400" />
+                14-day free trial
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CircleCheckBig size={14} className="text-emerald-400" />
+                Cancel anytime
+              </span>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Visual column */}
+        <div className="relative">
+          <Reveal delay={0.2} y={40}>
+            <DashboardMockup variant="overview" />
+          </Reveal>
+
+          {/* Floating proof chips */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="animate-mad-blob absolute -left-6 top-6 hidden rounded-2xl border border-white/10 bg-[#0e0e14]/90 px-4 py-3 shadow-2xl backdrop-blur sm:flex sm:items-center sm:gap-2.5"
+            style={{ animationDuration: "9s" }}
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-400/15">
+              <CircleCheckBig size={15} className="text-emerald-400" />
+            </span>
+            <div>
+              <p className="font-body text-xs font-semibold text-white">Workflow deployed</p>
+              <p className="font-mono-mad text-[10px] text-white/40">2 seconds ago</p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className="animate-mad-blob absolute -bottom-6 right-2 hidden rounded-2xl border border-white/10 bg-[#0e0e14]/90 px-4 py-3 shadow-2xl backdrop-blur sm:block"
+            style={{ animationDuration: "11s", animationDirection: "reverse" }}
+          >
+            <p className="font-mono-mad text-[10px] uppercase tracking-wider text-white/35">
+              Output this month
+            </p>
+            <p className="mad-gradient-text font-display text-2xl font-extrabold">+38%</p>
+          </motion.div>
         </div>
       </div>
-
-      {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.6 }}
-        className="pointer-events-none absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-1 text-white/40 sm:flex"
-      >
-        <span className="font-mono-mad text-[10px] uppercase tracking-widest">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ChevronDown size={16} />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

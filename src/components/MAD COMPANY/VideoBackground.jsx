@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 export default function VideoBackground({
   sources = ["/videos/moon-walk.mp4"], 
   poster, // e.g. "/videos/reel-poster.jpg" — shown while video loads, or as a static fallback
-  overlay = "bg-black/60",
+  // overlay = "bg-black/60",
   cycle = 7000,
   grain = false,
   className = "",
@@ -60,11 +60,11 @@ export default function VideoBackground({
       ) : (
         // Nothing supplied yet — animated gradient placeholder so the
         // section still feels alive. Pass `sources` or `poster` when ready.
-        <div className="mad-placeholder-gradient h-full w-full" />
+        <div/>
       )}
 
-      {grain && <div className="mad-grain absolute inset-0" />}
-      <div className={`absolute inset-0 ${overlay}`} />
+      {/* {grain && <div className="mad-grain absolute inset-0" />}
+      <div className={`absolute inset-0 ${overlay}`} /> */}
     </div>
   );
 }

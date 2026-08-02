@@ -1,27 +1,36 @@
 import { Reveal } from "./Reveal";
 
-// NOTE: These are placeholder wordmarks, not real companies.
-// Swap them out once you have real client logos to display —
-// showing real brands as "clients" without their sign-off isn't a good idea.
-const LOGOS = ["NOVA", "ORBITAL", "FLUX", "VERDA", "ATLAS LABS", "PULSE", "ZENITH", "HALO", "KIRA", "DRIFT"];
+// Placeholder wordmarks — swap for real customer logos (SVGs in /public/logos)
+// once you have permission to display them. Keeping the array here means the
+// marquee resizes itself automatically no matter how many you add.
+const LOGOS = [
+  "Nova", "Fintra", "Loopwave", "Orbital", "Vantra",
+  "Halcyon", "Driftline", "Cobalt Labs", "Ferro", "Northwind",
+];
 
 export default function ClientLogos() {
-  const loop = [...LOGOS, ...LOGOS];
+  const track = [...LOGOS, ...LOGOS];
+
   return (
-    <section id="clients" className="bg-[#060608] py-16">
-      <Reveal>
-        <p className="mb-8 text-center font-mono-mad text-xs uppercase tracking-widest text-white/40">
-          Trusted by teams who move fast
+    <section id="clients" className="relative bg-[#060608] px-6 py-16 lg:px-10">
+      <Reveal className="mx-auto mb-9 max-w-xl text-center">
+        <p className="font-mono-mad text-xs uppercase tracking-widest text-white/40">
+          Trusted by fast-moving teams at
         </p>
       </Reveal>
-      <div className="group overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
-        <div className="mad-marquee-track-slow flex w-max items-center gap-16 whitespace-nowrap">
-          {loop.map((logo, i) => (
+
+      <div className="group relative mx-auto max-w-6xl overflow-hidden">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#060608] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#060608] to-transparent" />
+
+        <div className="mad-marquee-track flex w-max items-center gap-16">
+          {track.map((name, i) => (
             <span
-              key={i}
-              className="font-display text-2xl font-bold tracking-wide text-white/25 transition duration-300 hover:scale-110 hover:text-white/70"
+              key={`${name}-${i}`}
+              className="flex items-center gap-2 font-display text-xl font-bold tracking-tight text-white/30 transition-colors hover:text-white/70"
             >
-              {logo}
+              <span className="h-1.5 w-1.5 rounded-full bg-current" />
+              {name}
             </span>
           ))}
         </div>

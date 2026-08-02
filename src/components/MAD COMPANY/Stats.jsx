@@ -2,10 +2,10 @@ import { Reveal, RevealStagger, RevealItem } from "./Reveal";
 import AnimatedCounter from "./AnimatedCounter";
 
 const STATS = [
-  { value: "150+", label: "Projects shipped" },
-  { value: "40+", label: "Brands served" },
-  { value: "8", label: "Studios in-house" },
-  { value: "4.9/5", label: "Avg. client rating" },
+  { value: "10K+", label: "Teams onboarded" },
+  { value: "99.98%", label: "Platform uptime" },
+  { value: "4.9/5", label: "Avg. customer rating" },
+  { value: "35+", label: "Hours saved / team / mo" },
 ];
 
 export default function Stats() {
@@ -16,8 +16,8 @@ export default function Stats() {
           By the numbers
         </p>
         <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          The kind of numbers{" "}
-          <span className="mad-gradient-text">your board actually asks for.</span>
+          Numbers your{" "}
+          <span className="mad-gradient-text">finance team will like too.</span>
         </h2>
       </Reveal>
       <RevealStagger className="mx-auto grid max-w-6xl grid-cols-2 gap-y-10 rounded-3xl border border-white/10 bg-white/[0.02] px-6 py-12 sm:grid-cols-4 sm:divide-x sm:divide-white/10">

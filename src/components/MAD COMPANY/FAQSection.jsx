@@ -6,28 +6,28 @@ import { Reveal, RevealStagger, RevealItem } from "./Reveal";
 
 const FAQS = [
   {
-    q: "Do we need to brief all eight studios, or just one?",
-    a: "Just the one you need. Most clients start with a single studio — MAD Tech for a rebuild, MAD Mind for an AI agent — and pull in others later once they see how the pod works. Nothing forces you into the whole house.",
+    q: "Do I need to know how to code?",
+    a: "No. Every workflow is built visually with triggers, conditions, and actions. Our API and webhooks are there if your engineers want to go further, but nothing requires them.",
   },
   {
-    q: "Can you work inside our existing vendor and NDA process?",
-    a: "Yes. We regularly run through MSAs, security questionnaires, and NDAs before a single deliverable ships — route it to hello@madcompany.co and we'll get it moving in parallel with kickoff.",
+    q: "How does the 14-day free trial work?",
+    a: "Full access to the Growth plan for 14 days, no credit card required. If you don't add a payment method by day 14, your account simply drops to a limited free tier — nothing gets charged automatically.",
   },
   {
-    q: "Who actually works on our account?",
-    a: "A dedicated pod, not a rotating cast. You get a lead from each relevant studio plus a single point of contact who owns the whole engagement — the same people from kickoff through launch.",
+    q: "Can I change or cancel my plan at any time?",
+    a: "Yes — upgrade, downgrade, or cancel from account settings whenever you like. Downgrades and cancellations take effect at the end of your current billing period.",
   },
   {
-    q: "How fast can you actually start?",
-    a: "Discovery typically kicks off within a week of a signed SOW. Full production timelines depend on scope, but most single-studio engagements are live within 6-10 weeks.",
+    q: "Is my data secure?",
+    a: "MAD is SOC 2 Type II audited and GDPR-ready, with data encrypted in transit and at rest. Enterprise plans add SSO/SCIM provisioning and custom data-retention controls.",
   },
   {
-    q: "Do you work with regulated industries like finance or healthcare?",
-    a: "Regularly. Our finance and health clients bring their own compliance requirements to discovery, and we build the review gates into the timeline — nothing ships without your sign-off.",
+    q: "What happens if an integration goes down?",
+    a: "Workflows automatically retry with backoff, and you'll get an alert if a run fails after retries. Every run is logged, so nothing silently disappears.",
   },
   {
-    q: "What does pricing look like — project or retainer?",
-    a: "Both. One-off builds are scoped and quoted per project; ongoing work (growth, data, cloud) usually moves to a monthly retainer once the first engagement proves out.",
+    q: "Do you offer discounts for nonprofits or startups?",
+    a: "Yes — reach out to our team with proof of status and we'll get you set up with a discounted rate on the Growth plan.",
   },
 ];
 
@@ -39,11 +39,11 @@ export default function FAQSection() {
       <div className="mx-auto max-w-4xl">
         <Reveal className="mb-12 text-center">
           <p className="font-mono-mad text-xs uppercase tracking-widest text-white/40">
-            Before you ask
+            FAQ
           </p>
           <h2 className="mt-3 font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            Questions procurement{" "}
-            <span className="mad-gradient-text">always asks first.</span>
+            Questions people{" "}
+            <span className="mad-gradient-text">ask before signing up.</span>
           </h2>
         </Reveal>
 

@@ -135,13 +135,28 @@
   pointer-events: none;
 }
 
+/* ---------- product-tour progress bar ----------
+   Fills over the auto-advance interval on the active tab in
+   <ProductShowcase>. Duration is set inline via style since it needs
+   to match the JS interval (AUTO_MS). */
+@keyframes mad-tab-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.mad-tab-progress {
+  animation-name: mad-tab-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mad-marquee-track,
   .mad-marquee-track-slow,
   .mad-marquee-track-reverse,
   .animate-mad-blob,
   .mad-placeholder-gradient,
-  .mad-shimmer-border::after {
+  .mad-shimmer-border::after,
+  .mad-tab-progress {
     animation: none !important;
   }
 }

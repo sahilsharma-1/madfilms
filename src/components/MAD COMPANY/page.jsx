@@ -1,15 +1,16 @@
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import ClientLogos from "./ClientLogos";
-import CapabilitiesStrip from "./CapabilitiesStrip";
-import Stats from "./Stats";
-import CompaniesShowcase from "./CompaniesShowcase";
+import Features from "./Features";
+import ProductShowcase from "./ProductShowcase";
 import ProcessSection from "./ProcessSection";
-import CaseStudies from "./CaseStudies";
+import Integrations from "./Integrations";
+import Stats from "./Stats";
 import Testimonials from "./Testimonials";
+import CustomerStories from "./CustomerStories";
+import SecurityBand from "./SecurityBand";
+import Pricing from "./Pricing";
 import FAQSection from "./FAQSection";
-import Insights from "./Insights";
-import Team from "./Team";
 import CTASection from "./CTASection";
 import Footer from "./Footer";
 
@@ -19,15 +20,16 @@ export default function Home() {
       <Navbar />
       <Hero />
       <ClientLogos />
-      <CapabilitiesStrip />
-      <Stats />
-      <CompaniesShowcase />
+      <Features />
+      <ProductShowcase />
       <ProcessSection />
-      <CaseStudies />
+      <Integrations />
+      <Stats />
       <Testimonials />
+      <CustomerStories />
+      <SecurityBand />
+      <Pricing />
       <FAQSection />
-      <Insights />
-      <Team />
       <CTASection />
       <Footer />
     </main>

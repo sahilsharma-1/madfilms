@@ -1,103 +1,124 @@
-# What changed in this pass
+# MAD — SaaS rebuild
 
-Same dependency as before — nothing new to install beyond what you already have:
+This replaces the old "MAD company" agency site with a full **SaaS / AI
+startup marketing site** — same category as the premium ThemeForest
+Next.js templates, built on top of the animation engine you already had
+(`Reveal`, `Magnetic`, `GlassSurface`, `AnimatedCounter`, `VideoBackground`).
+
+I couldn't actually load the ThemeForest live preview you linked (it
+blocks bots, and licensed template code isn't something I'll copy anyway)
+— so instead of a pixel clone, this is a from-scratch build in the same
+*category*: dark theme, gradient accents, glassmorphism, animated
+dashboard mockups, and every section a template like that ships with.
+
+## 1. Install dependencies
+
+Your existing deps still work. Add these three:
 
 ```bash
-npm install framer-motion
+npm install react-icons clsx tailwind-merge
 ```
 
-(`lucide-react` and `next` were already in use.)
+`framer-motion` and `lucide-react` you already have. `gsap` / `lenis`
+from your own recommended-additions list are optional — nothing here
+depends on them, so add them later only if you want extra scroll effects.
 
-**Drop-in:** every file has the same name and default export as your existing
-components, so they overwrite what's already in your project. Four files are
-brand new (see below) — copy them in alongside the rest.
+> **Why react-icons is required now, not optional:** Lucide removed all
+> brand/social logos (GitHub, LinkedIn, YouTube, Instagram, etc.) in its
+> v1.0 release. The footer's social icons use `react-icons/fa6` instead —
+> which is exactly why your own notes already flagged react-icons for
+> "brand/social icons."
 
-## The brief
+## 2. Drop in the files
 
-This pass makes the site read like a full enterprise-facing marketing site —
-longer page, a section for every stage of an evaluation (what you do → proof
-→ how you work → case studies → objections → team → close), catchier
-section headlines aimed at corporate buyers, and no more empty
-image/video slots.
+Every file here has the same name/export as before, so it overwrites
+what's in `src/components/`. Four things changed shape:
 
-## New sections
-
-| File | What it is | Where it sits |
+| Old file | New file | What happened |
 |---|---|---|
-| `ProcessSection.jsx` | 4-step "how we work" (Discover → Design & Build → Launch → Scale) | After the companies grid |
-| `CaseStudies.jsx` | 6-card "Selected work" grid with project stills and result callouts | After the process section |
-| `FAQSection.jsx` | Accordion answering the questions procurement/legal ask first (NDAs, timelines, pricing, compliance) | After testimonials |
-| `Insights.jsx` | 3-card blog/insights preview | Before the team section |
+| `CapabilitiesStrip.jsx` | `Features.jsx` | Rebuilt as a bento feature grid |
+| `CompaniesShowcase.jsx` | `ProductShowcase.jsx` | Rebuilt as an auto-advancing tabbed product tour |
+| `CaseStudies.jsx` | `CustomerStories.jsx` | Same idea, SaaS-flavored copy, no stock photos needed |
+| `Team.jsx`, `Insights.jsx`, `studios.js` | *(removed)* | Not typical for a SaaS homepage — see below if you want them back |
 
-`page.jsx` now assembles all of it in order:
-Navbar → Hero → Client logos → Capabilities → Stats → Companies →
-Process → Case studies → Testimonials → FAQ → Insights → Team → CTA → Footer.
+New: `DashboardMockup.jsx` (shared fake product UI), `Integrations.jsx`,
+`Pricing.jsx`, `SecurityBand.jsx`.
 
-## Every image slot is filled
+Unchanged, just copy over: `Reveal.jsx`, `Magnetic.jsx`,
+`AnimatedCounter.jsx`, `GlassSurface.jsx`, `GlassSurface.css`,
+`VideoBackground.jsx`.
 
-Nothing on the page is a blank box anymore. Placeholders are wired up with
-two free, no-API-key placeholder services so you can see the real layout
-immediately:
+**`globals-additions.css`** — paste over what you pasted in last time
+(same tokens/utilities, plus one new keyframe for the product-tour
+progress bar). If you'd rather not overwrite, just add the
+`.mad-tab-progress` block near the bottom to your existing file.
 
-- **[Picsum](https://picsum.photos)** (`picsum.photos/seed/<name>/<w>/<h>`) —
-  general photography: hero background, studio hover-cards, case-study
-  stills, insights thumbnails. Each uses a fixed `seed` so the same
-  placeholder shows every reload instead of a random one.
-- **[Pravatar](https://pravatar.cc)** (`i.pravatar.cc/<size>?img=<n>`) —
-  headshots: team photos, testimonial avatars.
+`page.jsx` now assembles, in order:
 
-**Replace these before launch** — swap each URL for real project stills,
-team photos, and client headshots. Every file that uses one has a comment
-flagging it (`studios.js`, `Hero.jsx`, `CaseStudies.jsx`, `Insights.jsx`,
-`Team.jsx`, `Testimonials.jsx`).
+```
+Navbar → Hero → Trusted-by logos → Features → Product tour (tabs) →
+How it works → Integrations → Stats → Testimonials → Customer stories →
+Security strip → Pricing → FAQ → CTA → Footer
+```
 
-## Other changes
+## 3. The dashboard mockup — no screenshots required
 
-- **Hero** — dropped the broken relative video path (`videos/moon-walk.mp4`
-  had no leading slash and would 404); now falls back to a full-bleed
-  Picsum poster until you drop a real reel in. Added a trust line under the
-  CTAs and a tilted 3-image "recent work" strip under the stats bar.
-- **Navbar** — "Work" now points at the new `#work` case-studies section
-  instead of the client-logos strip; added a "Process" link.
-- **Capabilities / Stats** — both sections now have an eyebrow + headline
-  instead of dropping straight into content.
-- **Testimonials** — expanded from 3 to 6 quotes (two rows), all with
-  avatars.
-- **Team** — photos filled in, plus a LinkedIn icon that appears on hover.
-- **Footer** — added a small "studio notes" email signup row.
-- **CTA** — added a one-line trust reassurance under the buttons.
+Instead of stock photos of laptops (which would look like an agency site,
+not a product), `DashboardMockup.jsx` hand-builds a fake product UI in
+pure JSX/CSS/SVG — animated bar charts, a workflow node-graph, a donut
+chart, a team activity list. It takes a `variant` prop
+(`"overview" | "automation" | "analytics" | "team"`) and powers both the
+Hero shot and all four tabs in the product tour, so it's one component
+to restyle once you have real screenshots.
 
-Everything still respects `prefers-reduced-motion` and the scroll-reveal /
-stagger / magnetic-button system is untouched.
+**When you have real product screenshots:** swap the `<Panel />` render
+in `DashboardMockup.jsx` for an `<img>`/`<video>` — everything else
+(the glass frame, sidebar, top bar, glow) still works as the frame
+around it.
 
-## Where to plug in your own assets
+## 4. Background videos — real ones, ready to swap
 
-| File | What to set | Effect |
+Per your "add online videos, I'll change later" — Hero and CTA use real
+hosted loops from Mixkit (free commercial license, no attribution
+required, no API key):
+
+- `Hero.jsx` → `HERO_VIDEOS` (2 clips, crossfade) + `HERO_POSTER`
+- `CTASection.jsx` → `CTA_VIDEOS` + `CTA_POSTER`
+
+Swap the URLs for your own reel whenever it's ready — `VideoBackground`
+already handles both local (`/videos/...`) and remote (`https://...`)
+sources identically.
+
+## 5. Placeholder content you'll want to replace
+
+Nothing is left blank, but plenty is invented so the layout works today:
+
+| File | What's fake | Where to fix it |
 |---|---|---|
-| `Hero.jsx` | `HERO_VIDEOS` array, `HERO_POSTER` | Full-bleed background reel/still behind the headline |
-| `Hero.jsx` | `SHOWCASE` array images | The tilted 3-card "recent work" strip |
-| `CTASection.jsx` | `CTA_VIDEOS` array | Subtle looping clip behind the closing gradient panel |
-| `studios.js` | `image` / `video` per studio | Plays/shows behind each company card on hover |
-| `CaseStudies.jsx` | `CASES` array | Selected-work grid — images, client names, results, links |
-| `Insights.jsx` | `POSTS` array | Blog/insights preview cards |
-| `Testimonials.jsx` | `avatar` per testimonial | Headshot on each quote card |
-| `Team.jsx` | `photo` per team member | Real headshot instead of gradient initials |
+| `ClientLogos.jsx`, `CustomerStories.jsx` | Fictional company names (Nova, Ferro, Vantra...) | `LOGOS` / `STORIES` arrays |
+| `Testimonials.jsx` | Quotes + names, real headshots via pravatar.cc | `TESTIMONIALS` array |
+| `Pricing.jsx` | $29 / $79 / Custom — invented numbers | `PLANS` array |
+| `Stats.jsx` | 10K+ teams, 99.98% uptime, etc. | `STATS` array |
+| Everywhere | Brand name "MAD" / "MAD OS" | Search-and-replace once you land on a name |
 
-Put actual files in `/public/videos` and `/public/images` (or wherever your
-`public/` folder is) and reference them with an absolute path like
-`"/videos/reel-1.mp4"`.
+I didn't know what your product actually does, so I went with a generic
+"AI ops / workflow automation" pitch — broad enough to reskin toward
+whatever MAD actually is. Same goes for pricing tiers/numbers — pure
+placeholders, not a recommendation.
 
-## Full file list
+## 6. If you want Team/Insights back
 
-Helpers (unchanged): `Reveal.jsx`, `AnimatedCounter.jsx`, `Magnetic.jsx`,
-`VideoBackground.jsx`, `GlassSurface.jsx`, `GlassSurface.css`.
+They weren't dropped because they're bad — just because they're not
+standard on a SaaS product homepage (they read more like an agency
+site). If you want them, they can go back in easily; happy to rebuild
+them in the same visual language on request instead of guessing at
+where you'd want them.
 
-Sections (updated): `Navbar.jsx`, `Hero.jsx`, `ClientLogos.jsx`,
-`CapabilitiesStrip.jsx`, `Stats.jsx`, `CompaniesShowcase.jsx`,
-`Testimonials.jsx`, `Team.jsx`, `CTASection.jsx`, `Footer.jsx`.
+## A note on the "clone it" ask
 
-Sections (new): `ProcessSection.jsx`, `CaseStudies.jsx`, `FAQSection.jsx`,
-`Insights.jsx`.
-
-Data/config (updated): `studios.js`, `globals-additions.css` (unchanged,
-included for completeness), `page.jsx`.
+I built this in the same *category* as the template you linked — dark
+SaaS aesthetic, tabbed product tour, pricing, the works — rather than
+copying its actual code or design, since that's licensed for the
+person who bought it. If there's a specific section from a template
+you want closer to (send a screenshot), that's much easier to match
+precisely than working from a blocked preview link.

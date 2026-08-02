@@ -122,3 +122,143 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.mad-gradient-text {
+  background: linear-gradient(90deg, var(--mad-blue), var(--mad-violet) 55%, var(--mad-magenta));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mad-gradient-bg {
+  background: linear-gradient(90deg, var(--mad-blue), var(--mad-violet) 55%, var(--mad-magenta));
+}
+
+.mad-gradient-border {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.mad-gradient-border:hover {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--mad-surface), var(--mad-surface)) padding-box,
+    linear-gradient(120deg, var(--mad-blue), var(--mad-violet), var(--mad-magenta)) border-box;
+}
+
+/* ---------- signature: tilted ribbon + marquees ---------- */
+@keyframes mad-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.mad-marquee-track { animation: mad-marquee 28s linear infinite; }
+.mad-marquee-track-slow { animation: mad-marquee 45s linear infinite; }
+.mad-marquee-track-reverse { animation: mad-marquee 32s linear infinite reverse; }
+.group:hover .mad-marquee-track,
+.group:hover .mad-marquee-track-slow,
+.group:hover .mad-marquee-track-reverse {
+  animation-play-state: paused;
+}
+
+@keyframes mad-blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(24px, -32px) scale(1.08); }
+  66% { transform: translate(-20px, 18px) scale(0.94); }
+}
+.animate-mad-blob { animation: mad-blob 14s ease-in-out infinite; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ---------- animated placeholder gradient ----------
+   Used by <VideoBackground> whenever no `sources`/`poster` has
+   been supplied yet, so hero/CTA sections never show an empty box
+   while real video/image assets are still being added. */
+@keyframes mad-placeholder-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.mad-placeholder-gradient {
+  background: linear-gradient(120deg, rgba(0, 100, 250, 0.25), rgba(124, 58, 255, 0.2), rgba(247, 38, 168, 0.25));
+  background-size: 200% 200%;
+  animation: mad-placeholder-shift 10s ease-in-out infinite;
+}
+
+/* ---------- film-grain texture ----------
+   Optional overlay for background video/images — pass `grain` to
+   <VideoBackground> to give a premium, less-flat-video look. */
+.mad-grain {
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- cursor-tracked spotlight ----------
+   Add alongside an onMouseMove handler that sets --x / --y (see
+   CompaniesShowcase.jsx / Testimonials.jsx) for a soft glow that
+   follows the pointer across a card. */
+.mad-spotlight {
+  position: relative;
+}
+.mad-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(500px circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.08), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.mad-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* ---------- shimmering pill border ----------
+   Used on the Hero eyebrow badge for a subtle "alive" accent. */
+@keyframes mad-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.mad-shimmer-border {
+  position: relative;
+}
+.mad-shimmer-border::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  background-size: 200% 100%;
+  animation: mad-shimmer 3.2s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ---------- product-tour progress bar ----------
+   Fills over the auto-advance interval on the active tab in
+   <ProductShowcase>. Duration is set inline via style since it needs
+   to match the JS interval (AUTO_MS). */
+@keyframes mad-tab-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.mad-tab-progress {
+  animation-name: mad-tab-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mad-marquee-track,
+  .mad-marquee-track-slow,
+  .mad-marquee-track-reverse,
+  .animate-mad-blob,
+  .mad-placeholder-gradient,
+  .mad-shimmer-border::after,
+  .mad-tab-progress {
+    animation: none !important;
+  }
+}
