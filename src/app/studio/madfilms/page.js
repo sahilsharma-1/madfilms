@@ -9,7 +9,7 @@ import Benefits from "@/components/Madfilms/Benefits";
 import Team from "@/components/Madfilms/Team";
 import FAQ from "@/components/Madfilms/FAQ";
 import CTASection from "@/components/Madfilms/CTASection";
-import Footer from "@/components/Madfilms/Footer";
+import Footer from "@/components/MAD COMPANY/Footer";
 
 export default function MadfilmsPage() {
   return (

@@ -27,56 +27,53 @@ const STUDIOS = [
     name: "MAD FILMS",
     tagline: "Film, photo & content production",
     icon: Clapperboard,
-    href: "#mad-films",
-    gradient: [],
+href: "/studio/madfilms",
     image: "/images/MADFILM NAVBAR.png",
   },
   {
     name: "MAD AI",
     tagline: "AI agents & automation",
     icon: Bot,
-    href: "#mad-ai",
-    gradient: ["#7C3AFF", "#00C2FF"],
+href: "/studio/automate",
     image: "https://placehold.co/800x600/7C3AFF/FFFFFF?font=montserrat&text=MAD+AI",
   },
   {
     name: "MAD WEB",
     tagline: "Websites, apps & SaaS platforms",
     icon: Globe,
-    href: "#mad-web",
-    gradient: ["#0064FA", "#00C2FF"],
+href: "/studios/web",
     image: "https://placehold.co/800x600/0064FA/FFFFFF?font=montserrat&text=MAD+WEB",
   },
   {
     name: "MAD MARKETING",
     tagline: "Paid media, Google Ads & brand",
     icon: Megaphone,
-    href: "#mad-marketing",
-    gradient: ["#0064FA", "#F726A8"],
+    href: "/studios/marketing",
     image: "https://placehold.co/800x600/00C2FF/FFFFFF?font=montserrat&text=MAD+MARKETING",
   },
   {
     name: "MAD GEN",
     tagline: "SEO, analytics & lead generation",
     icon: TrendingUp,
-    href: "#mad-gen",
-    gradient: ["#7C3AFF", "#0064FA"],
+href: "/studios/automate",
     image: "https://placehold.co/800x600/0064FA/FFFFFF?font=montserrat&text=MAD+GEN",
   },
   {
     name: "MAD REALITY",
     tagline: "AR/VR & immersive experiences",
     icon: Glasses,
-    href: "#mad-reality",
-    gradient: ["#00C2FF", "#7C3AFF"],
+href: "/studios/reality",
+
     image: "https://placehold.co/800x600/00C2FF/FFFFFF?font=montserrat&text=MAD+REALITY",
   },
 ];
 
 const NAV_LINKS = [
-  { label: "Customers", href: "#testimonials" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Docs", href: "#" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Work", href: "/work" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const EASE = [0.21, 0.47, 0.32, 0.98];
@@ -149,13 +146,13 @@ export default function Navbar() {
                 <ChevronDown size={15} className={`transition-transform ${megaOpen ? "rotate-180" : ""}`} />
               </button>
               {NAV_LINKS.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="rounded-full px-4 py-2 font-body text-sm text-white/75 transition-all duration-300 hover:bg-white/10 hover:text-white"
-                >
-                  {link.label}
-                </a>
+<Link
+  key={link.label}
+  href={link.href}
+  className="rounded-full px-4 py-2 font-body text-sm text-white/75 transition-all duration-300 hover:bg-white/10 hover:text-white"
+>
+  {link.label}
+</Link>
               ))}
             </nav>
 
@@ -247,11 +244,11 @@ export default function Navbar() {
                   ))}
                 </div>
                 <div className="flex flex-col gap-1 border-t border-white/10 pt-4">
-                  {NAV_LINKS.map((link) => (
-                    <a key={link.label} href={link.href} className="py-2 text-sm text-white/80">
-                      {link.label}
-                    </a>
-                  ))}
+{NAV_LINKS.map((link) => (
+  <Link key={link.label} href={link.href} className="py-2 text-sm text-white/80">
+    {link.label}
+  </Link>
+))}
                   <a href="#" className="py-2 text-sm text-white/80">
                     Log in
                   </a>
@@ -280,10 +277,7 @@ function StudioCard({ item }) {
       className="group relative flex aspect-[16/10] flex-col overflow-hidden rounded-2xl border border-white/10 transition duration-300 hover:border-white/25 hover:-translate-y-0.5"
     >
       {/* fallback gradient — always visible underneath */}
-      <div
-        className="absolute inset-0"
-        style={{ background: `linear-gradient(135deg, ${item.gradient[0]}, ${item.gradient[1]})` }}
-      />
+   
       {/* photo layer — hides itself cleanly if a URL ever 404s */}
       <img
         src={item.image}
