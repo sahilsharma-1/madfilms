@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
@@ -128,13 +128,15 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between px-7 py-4 lg:px-8">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 font-display">
-              <span className="text-2xl font-extrabold tracking-tight text-white">MAD</span>
-              <span className="rounded-full mad-gradient-bg px-2.5 py-0.5 text-xs font-semibold text-white font-body">
-                os
-              </span>
-            </Link>
-
+<Link href="/" className="flex items-center">
+  <Image
+    src="/images/MAD FILMS LOGO.png"
+    alt="MAD Logo"
+    width={180}
+    height={60}
+    className="h-16 w-auto"
+  />
+</Link>
             {/* Desktop nav */}
             <nav className="hidden items-center gap-1 lg:flex">
               <button
