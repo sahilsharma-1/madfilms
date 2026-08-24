@@ -48,13 +48,28 @@ export default function OurCases() {
 const [videos, setVideos] = useState([]);
 
 useEffect(() => {
-fetch("/api/videos")
-  .then((r) => r.json())
-  .then((data) => {
-    console.log(data);
-    setVideos(data);
-  })
-  .catch(console.error);
+  fetch("/api/videos")
+    .then(async (res) => {
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to load videos");
+      }
+
+      if (!Array.isArray(data)) {
+        throw new Error("Invalid video response");
+      }
+
+      return data;
+    })
+    .then((data) => {
+      console.log("Vimeo videos:", data);
+      setVideos(data);
+    })
+    .catch((error) => {
+      console.error("Video loading error:", error);
+      setVideos([]);
+    });
 }, []);
 
 const filtered = useMemo(() => {
