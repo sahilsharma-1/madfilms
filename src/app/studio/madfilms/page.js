@@ -12,6 +12,7 @@ import CTASection from "@/components/Madfilms/CTASection";
 import Footer from "@/components/MAD COMPANY/Footer";
 import Reels from "@/components/Madfilms/Reels";
 import ClientLogos from "@/components/MAD COMPANY/ClientLogos";
+import Campaigns from "@/components/Madfilms/Campaigns";
 
 export default function MadfilmsPage() {
   return (
@@ -23,6 +24,7 @@ export default function MadfilmsPage() {
       <Reels/>
       <IntroSection />
       <OurCases />
+      <Campaigns />
       {/* <VideoShowcase /> */}
       <Stats />
       <Benefits />
