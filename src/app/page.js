@@ -8,6 +8,8 @@ import Testimonials from "@/components/MAD COMPANY/Testimonials";
 import Team from "@/components/MAD COMPANY/Team";
 import CTASection from "@/components/MAD COMPANY/CTASection";
 import Footer from "@/components/MAD COMPANY/Footer";
+import Campaigns from "@/components/Madfilms/Campaigns";
+
 
 export default function Home() {
   return (

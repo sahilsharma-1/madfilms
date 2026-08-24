@@ -134,7 +134,7 @@ export default function Navbar() {
     alt="MAD Logo"
     width={180}
     height={60}
-    className="h-16 w-auto"
+    className="h-21 w-auto"
   />
 </Link>
             {/* Desktop nav */}

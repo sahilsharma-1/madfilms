@@ -10,6 +10,8 @@ import Team from "@/components/Madfilms/Team";
 import FAQ from "@/components/Madfilms/FAQ";
 import CTASection from "@/components/Madfilms/CTASection";
 import Footer from "@/components/MAD COMPANY/Footer";
+import Reels from "@/components/Madfilms/Reels";
+import ClientLogos from "@/components/MAD COMPANY/ClientLogos";
 
 export default function MadfilmsPage() {
   return (
@@ -17,12 +19,14 @@ export default function MadfilmsPage() {
       <Navbar/>
        <Hero/>
       <CapabilitiesStrip />
+       <ClientLogos />
+      <Reels/>
       <IntroSection />
       <OurCases />
-      <VideoShowcase />
+      {/* <VideoShowcase /> */}
       <Stats />
       <Benefits />
-      <Team />
+      {/* <Team /> */}
       <FAQ />
       <CTASection />
       <Footer /> 

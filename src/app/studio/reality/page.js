@@ -7,6 +7,7 @@ import Process from "@/components/Reality/Process";
 import TechStack from "@/components/Reality/TechStack";
 import CTA from "@/components/Reality/CTA";
 import Footer from "@/components/MAD COMPANY/Footer";
+import Reels from "@/components/Madfilms/Reels.jsx";
 
 export default function RealityPage() {
   return (
@@ -14,6 +15,7 @@ export default function RealityPage() {
       <Navbar />
       <Hero />
       <CapabilitiesStrip />
+      <Reels />
       <Services />
       <Showcase />
       <Process />
