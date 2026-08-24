@@ -57,7 +57,7 @@ useEffect(() => {
       }
 
       if (!Array.isArray(data)) {
-        throw new Error("Invalid video response");
+        throw new Error("Invalid video data received");
       }
 
       return data;
