@@ -21,7 +21,7 @@ export default function AutomatePage() {
       <TechStack />
       <FAQ />
       <CTA />
-      <Footer />
+      <Footer/>
     </main>
   );
 }

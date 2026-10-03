@@ -6,7 +6,7 @@ import Showcase from "@/components/Reality/Showcase";
 import Process from "@/components/Reality/Process";
 import TechStack from "@/components/Reality/TechStack";
 import CTA from "@/components/Reality/CTA";
-import Footer from "@/components/MAD COMPANY/Footer";
+import HomeFooter from "@/components/MAD COMPANY/HomeFooter.jsx";
 import Reels from "@/components/Madfilms/Reels.jsx";
 
 export default function RealityPage() {
@@ -21,7 +21,7 @@ export default function RealityPage() {
       <Process />
       <TechStack />
       <CTA />
-      <Footer />
+      <HomeFooter />
     </main>
   );
 }
