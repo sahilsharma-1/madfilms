@@ -22,6 +22,6 @@ export default function RealityPage() {
       <TechStack />
       <CTA />
       <HomeFooter />
-    </main>
+    </main >
   );
 }
