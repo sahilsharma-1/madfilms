@@ -12,7 +12,7 @@ import SecurityBand from "./SecurityBand";
 import Pricing from "./Pricing";
 import FAQSection from "./FAQSection";
 import CTASection from "./CTASection";
-import Footer from "./Footer";
+import HomeFooter from "./HomeFooter";
 
 export default function Home() {
   return (
@@ -31,7 +31,7 @@ export default function Home() {
       <Pricing />
       <FAQSection />
       <CTASection />
-      <Footer />
+      <HomeFooter />
     </main>
   );
 }
