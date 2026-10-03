@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const EASE = [0.21, 0.47, 0.32, 0.98];
 
@@ -13,18 +13,19 @@ const EASE = [0.21, 0.47, 0.32, 0.98];
 export function Reveal({
   children,
   delay = 0,
-  y = 28,
+  y = 18,
   duration = 0.7,
   once = true,
   className = "",
   as = "div",
 }) {
   const Comp = motion[as] ?? motion.div;
+  const still = useReducedMotion();
   return (
     <Comp
-      initial={{ opacity: 0, y }}
+      initial={{ opacity: 0, y: still ? 0 : y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, margin: "-100px" }}
+      viewport={{ once, margin: "-60px" }}
       transition={{ duration, delay, ease: EASE }}
       className={className}
     >
@@ -55,11 +56,12 @@ export function RevealStagger({ children, className = "", stagger = 0.08, delayC
   );
 }
 
-export function RevealItem({ children, className = "", y = 24 }) {
+export function RevealItem({ children, className = "", y = 16 }) {
+  const still = useReducedMotion();
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y },
+        hidden: { opacity: 0, y: still ? 0 : y },
         show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
       }}
       className={className}

@@ -9,9 +9,9 @@ import Benefits from "@/components/Madfilms/Benefits";
 import Team from "@/components/Madfilms/Team";
 import FAQ from "@/components/Madfilms/FAQ";
 import CTASection from "@/components/Madfilms/CTASection";
-import Footer from "@/components/MAD COMPANY/Footer";
+import HomeFooter from "@/components/MAD COMPANY/HomeFooter";
 import Reels from "@/components/Madfilms/Reels";
-import ClientLogos from "@/components/MAD COMPANY/ClientLogos";
+// import ClientLogos from "@/components/MAD COMPANY/ClientLogos";
 import Campaigns from "@/components/Madfilms/Campaigns";
 
 export default function MadfilmsPage() {
@@ -20,7 +20,7 @@ export default function MadfilmsPage() {
       <Navbar/>
        <Hero/>
       <CapabilitiesStrip />
-       <ClientLogos />
+       {/* <ClientLogos /> */}
       <Reels/>
       <IntroSection />
       <OurCases />

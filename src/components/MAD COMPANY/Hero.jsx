@@ -1,154 +1,68 @@
 "use client";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight, CalendarCheck } from "lucide-react";
+import AgentFlow from "./AgentFlow";
+import Photo from "./Photo";
+import { HERO_COLLAGE } from "@/lib/media";
 
-import { ArrowUpRight, Play, Sparkles, CircleCheckBig } from "lucide-react";
-import VideoBackground from "./VideoBackground";
-import DashboardMockup from "./DashboardMockup";
-import Magnetic from "./Magnetic";
-import { Reveal } from "./Reveal";
-import { motion } from "framer-motion";
-
-// Background loop — plays these 3 in order, then wraps back to the first.
-// Files live in /public/videos/. Swap for your own brand reel any time,
-// just keep the paths pointing at real files with the right extension.
-const HERO_VIDEOS = [
-  // "/videos/arvrhero.mp4",
-  // "/videos/metal-human.mp4",
-  // "/videos/sea-storm.mp4",
-  "/videos/moon-walk.mp4",
-  // "https://assets.mixkit.co/q6cmteclv5i8dsbayhbm6uojy9bu",
+const EASE = [0.21, 0.47, 0.32, 0.98];
+export const HERO_STEPS = [
+  { t: "Lead found", d: "Healthcare, India" },
+  { t: "Researching company" },
+  { t: "Finding decision maker" },
+  { t: "Personalizing message" },
+  { t: "Sending outreach" },
+  { t: "Reply received" },
+  { t: "Meeting booked" },
 ];
 
 export default function Hero() {
+  const still = useReducedMotion();
   return (
-    <section className="relative overflow-hidden bg-[#060608] pb-24 pt-40 lg:pb-32 lg:pt-48">
-      <VideoBackground
-        sources={HERO_VIDEOS}
-        overlay="bg-[#060608]/80"
-        grain
-        className="opacity-40"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-        }}
-      />
-
-      <div className="relative z-10 mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-10 lg:px-10">
-        {/* Copy column */}
+    <section data-tone="dark" className="mh-dark mh-aurora relative flex min-h-[100svh] items-center overflow-hidden">
+      <div aria-hidden className="mh-dots absolute inset-0" />
+      <div className="mh-wrap relative grid w-full items-center gap-16 pb-24 pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pb-16 lg:pt-28">
         <div>
-          <Reveal>
-            <a
-              href="#"
-              className="mad-shimmer-border inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 font-body text-xs font-medium text-white/80"
-            >
-              <Sparkles size={13} className="text-[#00C2FF]" />
-              Introducing MAD Agents — autonomous AI workflows
-              <ArrowUpRight size={13} />
-            </a>
-          </Reveal>
-
-          <Reveal delay={0.08}>
-            <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-[4.2rem]">
-              Run your entire{" "}
-              <span className="mad-gradient-text">operation on autopilot.</span>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={0.16}>
-            <p className="mt-6 max-w-lg font-body text-lg leading-relaxed text-white/60">
-              MAD is the AI operations platform that connects your tools, automates
-              the busywork, and gives your team one place to see everything that
-              matters — without writing a line of code.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.24}>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Magnetic>
-                <a
-                  href="#pricing"
-                  className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-sm font-semibold text-white transition hover:scale-[1.03]"
-                  style={{
-                    background: "linear-gradient(90deg,#0064FA,#00C2FF)",
-                    boxShadow: "0 0 45px rgba(0,150,255,.35)",
-                  }}
-                >
-                  Start free trial
-                  <ArrowUpRight size={16} />
-                </a>
-              </Magnetic>
-              <Magnetic strength={0.25}>
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 font-body text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
-                >
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10">
-                    <Play size={11} className="ml-0.5 fill-white text-white" />
-                  </span>
-                  Watch demo
-                </a>
-              </Magnetic>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.32}>
-            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 font-body text-xs text-white/45">
-              <span className="flex items-center gap-1.5">
-                <CircleCheckBig size={14} className="text-emerald-400" />
-                No credit card required
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CircleCheckBig size={14} className="text-emerald-400" />
-                14-day free trial
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CircleCheckBig size={14} className="text-emerald-400" />
-                Cancel anytime
-              </span>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Visual column */}
-        <div className="relative">
-          <Reveal delay={0.2} y={40}>
-            <DashboardMockup variant="overview" />
-          </Reveal>
-
-          {/* Floating proof chips */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="animate-mad-blob absolute -left-6 top-6 hidden rounded-2xl border border-white/10 bg-[#0e0e14]/90 px-4 py-3 shadow-2xl backdrop-blur sm:flex sm:items-center sm:gap-2.5"
-            style={{ animationDuration: "9s" }}
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-400/15">
-              <CircleCheckBig size={15} className="text-emerald-400" />
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="mh-label">MAD Company</motion.p>
+          <h1 className="mh-h1 mt-5" style={{ fontSize: "clamp(3.3rem, 9.4vw, 8.25rem)", lineHeight: 0.94, letterSpacing: "-0.055em" }}>
+            <span className="block overflow-hidden pb-[0.08em]">
+              <motion.span className="block" initial={{ y: still ? 0 : "100%" }} animate={{ y: 0 }} transition={{ duration: 1, delay: 0.1, ease: EASE }}>AI that does</motion.span>
             </span>
-            <div>
-              <p className="font-body text-xs font-semibold text-white">Workflow deployed</p>
-              <p className="font-mono-mad text-[10px] text-white/40">2 seconds ago</p>
-            </div>
+            <span className="block overflow-hidden pb-[0.12em]">
+              <motion.span className="mh-grad-text block" initial={{ y: still ? 0 : "100%" }} animate={{ y: 0 }} transition={{ duration: 1, delay: 0.22, ease: EASE }}>the work.</motion.span>
+            </span>
+          </h1>
+          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.5, ease: EASE }} className="mh-lead mt-7">
+            AI agents that find leads, talk to customers, automate workflows and help your team move faster.
+          </motion.p>
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.65, ease: EASE }} className="mt-9 flex flex-wrap gap-3">
+            <Link href="#contact" className="mh-btn mh-btn-grad">Build an AI Agent <ArrowUpRight size={15} /></Link>
+            <Link href="#scenarios" className="mh-btn mh-btn-line">See What We Build</Link>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="animate-mad-blob absolute -bottom-6 right-2 hidden rounded-2xl border border-white/10 bg-[#0e0e14]/90 px-4 py-3 shadow-2xl backdrop-blur sm:block"
-            style={{ animationDuration: "11s", animationDirection: "reverse" }}
-          >
-            <p className="font-mono-mad text-[10px] uppercase tracking-wider text-white/35">
-              Output this month
-            </p>
-            <p className="mad-gradient-text font-display text-2xl font-extrabold">+38%</p>
-          </motion.div>
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1 }} className="t-mute mt-10 text-sm">
+            Works with email, WhatsApp, LinkedIn, your CRM, databases and APIs.
+          </motion.p>
         </div>
+
+        <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, delay: 0.45, ease: EASE }} className="relative pb-12">
+          <div className="grid grid-cols-[1.1fr_0.9fr] gap-3 sm:gap-4">
+            <Photo m={HERO_COLLAGE[0]} priority vignette className="mh-zoom aspect-[3/4] rounded-[2rem]" />
+            <div className="grid gap-3 sm:gap-4">
+              <Photo m={HERO_COLLAGE[1]} priority className="mh-zoom aspect-square rounded-[2rem]" />
+              <Photo m={HERO_COLLAGE[2]} className="mh-zoom aspect-[4/3] rounded-[2rem]" />
+            </div>
+          </div>
+          <div aria-hidden className="mh-float mh-bubble absolute left-3 top-6 sm:-left-6">I&rsquo;ve booked your appointment for Thursday.</div>
+          <div aria-hidden className="mh-float-b mh-glass absolute -top-5 right-3 flex items-center gap-3 rounded-2xl px-4 py-3 sm:-right-4">
+            <span className="mh-grad-bg grid h-9 w-9 place-items-center rounded-xl text-white"><CalendarCheck size={18} /></span>
+            <span className="text-sm leading-tight"><span className="block font-medium">Meeting booked</span><span className="t-mute text-xs">Thursday, 4:00 PM</span></span>
+          </div>
+          <div className="mh-glass absolute bottom-0 left-3 right-3 rounded-3xl p-4 sm:left-6 sm:right-auto sm:w-[19rem]">
+            <div className="mb-3 flex items-center gap-2 text-xs t-mute"><span aria-hidden className="h-2 w-2 rounded-full mh-grad-bg mh-pulse" /> Sales agent, working</div>
+            <AgentFlow steps={HERO_STEPS.slice(0, 5)} speed={1200} />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
