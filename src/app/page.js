@@ -7,6 +7,7 @@ import Scenarios from "@/components/MAD COMPANY/Scenarios";
 import Agents from "@/components/MAD COMPANY/Agents";
 import Outreach from "@/components/MAD COMPANY/Outreach";
 import People from "@/components/MAD COMPANY/People";
+
 import Journey from "@/components/MAD COMPANY/Journey";
 import Enterprise from "@/components/MAD COMPANY/Enterprise";
 import Ecosystem from "@/components/MAD COMPANY/Ecosystem";
