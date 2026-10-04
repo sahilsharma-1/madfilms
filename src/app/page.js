@@ -1,31 +1,23 @@
-import Navbar from "@/components/MAD COMPANY/Navbar.jsx";
-import Hero from "@/components/MAD COMPANY/Hero";
-import Statement from "@/components/MAD COMPANY/Statement";
-import Moments from "@/components/MAD COMPANY/Moments";
-import Stories from "@/components/MAD COMPANY/Stories";
-import Scenarios from "@/components/MAD COMPANY/Scenarios";
-import Agents from "@/components/MAD COMPANY/Agents";
-import Outreach from "@/components/MAD COMPANY/Outreach";
-import People from "@/components/MAD COMPANY/People";
-
-import Journey from "@/components/MAD COMPANY/Journey";
-import Enterprise from "@/components/MAD COMPANY/Enterprise";
-import Ecosystem from "@/components/MAD COMPANY/Ecosystem";
-import Experience from "@/components/MAD COMPANY/Experience";
-import FinalCTA from "@/components/MAD COMPANY/FinalCTA";
-import HomeFooter from "@/components/MAD COMPANY/HomeFooter";
-import "@/components/MAD COMPANY/home.css";
+import Navbar from "@/components/MAD COMPANY/Navbar";
+import Hero2 from "@/components/home2/Hero2";
+import AgentsExplorer from "@/components/home2/AgentsExplorer";
+import { CustomAutomation, WatchAI, WorkflowScroller } from "@/components/home2/Sections1";
+import { MarketingFlow, MadFilmsBand, Stories, HumanAI, Enterprise, DarkAI } from "@/components/home2/Sections2";
+import CTA from "@/components/home/CTA";
+import Footer from "@/components/home/Footer";
+import "@/components/home/home.css";
+import "@/components/home2/home2.css";
 
 const SITE = "https://madcompany.in";
-const TITLE = "MAD Company | AI that does the work";
+const TITLE = "MAD Company | AI that gets work done";
 const DESCRIPTION =
-  "MAD Company builds AI agents that find customers, answer questions, move information and automate workflows, plus the software and data behind them.";
+  "MAD Company designs intelligent systems that turn complex workflows into measurable business outcomes: AI strategy, agents, automation, products, data intelligence, digital experiences and creative.";
 
 export const metadata = {
   metadataBase: new URL(SITE),
   title: TITLE,
   description: DESCRIPTION,
-  keywords: ["MAD Company", "AI agents", "AI sales agent", "AI outreach", "AI automation", "custom software", "data science", "business automation"],
+  keywords: ["MAD Company", "enterprise AI", "AI agents", "AI automation", "AI strategy", "data intelligence", "AI products", "AI transformation"],
   alternates: { canonical: "/" },
   openGraph: { title: TITLE, description: DESCRIPTION, url: SITE, siteName: "MAD Company", type: "website", locale: "en_IN" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
@@ -39,24 +31,23 @@ const jsonLd = [
 
 export default function Home() {
   return (
-    <main className="mh">
+    <main className="mx h2">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <a href="#scenarios" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:text-black">Skip to content</a>
+      <a href="#agents" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:text-black">Skip to content</a>
       <Navbar adaptive />
-      <Hero />
-      <Statement />
-      <Moments />
-      <Scenarios />
+      <Hero2 />
+      <AgentsExplorer />
+      <CustomAutomation />
+      <WatchAI />
+      <WorkflowScroller />
+      <MarketingFlow />
+      <MadFilmsBand />
       <Stories />
-      <Agents />
-      <Outreach />
-      <People />
-      <Journey />
+      <HumanAI />
       <Enterprise />
-      <Ecosystem />
-      <Experience />
-      <FinalCTA />
-      <HomeFooter />
+      <DarkAI />
+      <CTA />
+      <Footer />
     </main>
   );
 }

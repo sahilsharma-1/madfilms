@@ -54,3 +54,39 @@ export const STORIES = [
 ];
 
 export const CTA_BG = { src: px(1624496, 2200), alt: "Misty mountain ridges at dawn" };
+
+
+// ---- Homepage redesign (components/home). Reuses photo IDs already in this file wherever possible.
+// Same caveat as above: IDs are unverified from the build sandbox. Any that fail fall back to a quiet gradient tile.
+// Replace with owned photography (e.g. "/media/healthcare.jpg") as it becomes available.
+// `null` = no photo yet; the layout is designed to hold without one.
+export const HOME_MEDIA = {
+  heroA: HERO_COLLAGE[0],
+  heroB: HERO_COLLAGE[1],
+  editorial: { src: px(3184291, 2000), alt: "A team in discussion around a table in a modern office" },
+  editorialB: { src: px(1043471, 1200), alt: "A man smiling and talking on a call" },
+  editorialC: { src: px(733872, 1200), alt: "A woman smiling at her phone" },
+  human: { src: px(3184418, 2200), alt: "A team reviewing work together" },
+  industry: {
+    retail: { src: px(1181396, 1600), alt: "A friendly shop owner at work" },
+    healthcare: { src: px(3825527, 1600), alt: "A doctor speaking with a patient" },
+    finance: { src: px(3184663, 1600), alt: "Professionals reviewing documents together" },
+    manufacturing: null,
+    technology: { src: px(3861969, 1600), alt: "Engineers working at monitors in a technology workspace" },
+    enterprise: { src: px(3756679, 1600), alt: "A diverse team collaborating" },
+  },
+};
+
+
+// ---- AI agent library photography (same caveat: IDs unverified; any that fail fall back to a quiet tile). Swap for owned photos in /public/media/.
+export const AGENT_MEDIA = {
+  hr: { src: px(3184291, 1400), alt: "A recruiter and candidate in conversation in a modern office" },
+  service: { src: px(733872, 1400), alt: "A customer checking an order on her phone" },
+  finance: { src: px(3184663, 1400), alt: "A finance team reviewing documents together" },
+  procurement: { src: px(3756679, 1400), alt: "A team collaborating over a purchase decision" },
+  sales: { src: px(1043471, 1400), alt: "A salesperson on a call with a client" },
+  marketing: { src: px(3184359, 1400), alt: "A marketing team working in a casual modern workspace" },
+  it: { src: px(3861969, 1400), alt: "IT staff working at monitors" },
+  ops: { src: px(3184418, 1400), alt: "An operations team reviewing work together" },
+  health: { src: px(3825527, 1400), alt: "A doctor speaking with a patient" },
+};

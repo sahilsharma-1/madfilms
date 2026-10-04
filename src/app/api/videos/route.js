@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getVideos } from "@/lib/vimeo";
+import { getVideos } from "../../../lib/vimeo";
 
 export async function GET() {
   try {
