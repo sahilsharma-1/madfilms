@@ -7,7 +7,7 @@ import Process from "../../../components/Automate/Process";
 import TechStack from "../../../components/Automate/TechStack";
 import FAQ from "../../../components/Automate/FAQ";
 import CTA from "../../../components/Automate/CTA";
-import HomeFooter from "@/components/MAD COMPANY/HomeFooter";
+import Footer from "@/components/home/Footer";
 
 export default function AutomatePage() {
   return (
@@ -21,7 +21,7 @@ export default function AutomatePage() {
       <TechStack />
       <FAQ />
       <CTA />
-      <HomeFooter />
+      <Footer />
     </main>
   );
 }
