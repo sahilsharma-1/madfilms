@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { Photo, Win, Pill, Flow, EASE, useLive, useStepper, Fade } from "./ui";
+import { useReducedMotion } from "framer-motion";
+import { Users, ReceiptText, ShoppingCart, TrendingUp, Megaphone, Headset, Activity, HeartPulse, FileText, Search, UserCheck } from "lucide-react";
+import { Photo, Win, Pill, Flow, EASE, useLive, useStepper } from "./ui";
 
 /* 04 CUSTOM AUTOMATION: company in the middle, five inputs flow into it, one result comes out. */
 export function CustomAutomation() {
@@ -88,18 +89,18 @@ export function WatchAI() {
 
 /* 06 WORKFLOW GALLERY: horizontal scroller, deliberately unequal cards. */
 const WF = [
-  { n: "Recruiting", w: "blue", p: "hr", f: "CV > Shortlist > Interview", o: "Shortlists ready for review", wd: 22 },
-  { n: "Finance", w: "green", p: "finance", f: "Invoice > Match > Approve", o: "Fewer invoices typed by hand", wd: 17 },
-  { n: "Procurement", w: "gold", p: "procurement", f: "Request > Checks > Sign-off", o: "Requests arrive pre-checked", wd: 15 },
-  { n: "Sales", w: "blue", p: "sales", f: "Lead > Brief > CRM", o: "Account briefs before calls", wd: 22 },
-  { n: "Marketing", w: "red", p: "marketing", f: "Brief > Content > Publish", o: "A first draft of the campaign", wd: 17 },
-  { n: "Customer Support", w: "green", p: "support", f: "Message > Check > Reply", o: "Routine questions answered", wd: 15 },
-  { n: "Operations", w: "gold", p: "operations", f: "Monitor > Flag > Fix", o: "Issues ranked by impact", wd: 22 },
-  { n: "Healthcare", w: "green", p: "healthcare", f: "Request > Slot > Follow-up", o: "Admin off the care team", wd: 17 },
-  { n: "Reporting", w: "blue", p: null, f: "Sources > Draft > Approve", o: "Monthly reports assembled", wd: 15 },
-  { n: "Research", w: "gold", p: null, f: "Question > Sources > Brief", o: "Briefs in minutes", wd: 17 },
-  { n: "Content", w: "red", p: null, f: "Idea > Draft > Edit", o: "Drafts for every channel", wd: 15 },
-  { n: "Approvals", w: "green", p: null, f: "Request > Route > Decide", o: "Nothing waits unseen", wd: 17 },
+  { n: "Recruiting", Icon: Users, w: "blue", p: "hr", f: "CV > Shortlist > Interview", o: "Shortlists ready for review", wd: 22 },
+  { n: "Finance", Icon: ReceiptText, w: "green", p: "finance", f: "Invoice > Match > Approve", o: "Invoices checked before approval", wd: 17 },
+  { n: "Procurement", Icon: ShoppingCart, w: "gold", p: "procurement", f: "Request > Checks > Sign-off", o: "Requests arrive pre-checked", wd: 15 },
+  { n: "Sales", Icon: TrendingUp, w: "blue", p: "sales", f: "Lead > Brief > CRM", o: "Account briefs before calls", wd: 22 },
+  { n: "Marketing", Icon: Megaphone, w: "red", p: "marketing", f: "Brief > Content > Publish", o: "A first campaign draft", wd: 17 },
+  { n: "Customer Support", Icon: Headset, w: "green", p: "support", f: "Message > Check > Reply", o: "Routine questions handled", wd: 15 },
+  { n: "Operations", Icon: Activity, w: "gold", p: "operations", f: "Monitor > Flag > Fix", o: "Issues ranked by impact", wd: 22 },
+  { n: "Healthcare", Icon: HeartPulse, w: "green", p: "healthcare", f: "Request > Slot > Follow-up", o: "Admin off the care team", wd: 17 },
+  { n: "Reporting", Icon: FileText, w: "blue", p: null, f: "Sources > Draft > Approve", o: "Monthly reports assembled", wd: 15 },
+  { n: "Research", Icon: Search, w: "gold", p: null, f: "Question > Sources > Brief", o: "Briefs in minutes", wd: 17 },
+  { n: "Content", Icon: Megaphone, w: "red", p: null, f: "Idea > Draft > Edit", o: "Drafts for every channel", wd: 15 },
+  { n: "Approvals", Icon: UserCheck, w: "green", p: null, f: "Request > Route > Decide", o: "Nothing waits unseen", wd: 17 },
 ];
 export function WorkflowScroller() {
   return (
@@ -109,14 +110,17 @@ export function WorkflowScroller() {
         <p className="h2-lead !max-w-xs">Scroll the list. Every one is an example, not a product.</p>
       </div>
       <div className="h2-hs mt-8" tabIndex={0} role="region" aria-label="Workflow examples, scrollable">
-        {WF.map((c, k) => (
+        {WF.map((c, k) => {
+          const Icon = c.Icon;
+          return (
           <article key={c.n} data-world={c.w} className="flex flex-col justify-between rounded-[16px] p-4" style={{ width: `${c.wd}rem`, minHeight: k % 3 === 0 ? "25rem" : k % 3 === 1 ? "21rem" : "23rem", marginTop: k % 2 ? "1.5rem" : 0, background: "var(--w-light)", color: "var(--w-dark)" }}>
-            {c.p ? <Photo slot={c.p} className="h-32 rounded-[10px] md:h-40" /> : <div className="h-20 rounded-[10px]" style={{ background: "var(--w-mid)" }} />}
-            <div><p className="text-[1.5rem] font-semibold leading-none tracking-[-.04em]">{c.n}</p>
+            {c.p ? <Photo slot={c.p} className="h-32 rounded-[10px] md:h-40" /> : <div className="grid h-20 place-items-center rounded-[10px]" style={{ background: "var(--w-mid)" }}><Icon size={26} strokeWidth={1.5} /></div>}
+            <div><div className="flex items-center justify-between gap-3"><p className="text-[1.5rem] font-semibold leading-none tracking-[-.04em]">{c.n}</p><span className="grid h-8 w-8 place-items-center rounded-full bg-white/65"><Icon size={15} strokeWidth={1.7} /></span></div>
               <p className="mt-3 rounded-lg bg-white/70 px-2.5 py-2 text-[.74rem] font-semibold">{c.f}</p>
               <p className="mt-2 text-[.82rem]">{c.o}</p></div>
           </article>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

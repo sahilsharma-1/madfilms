@@ -1,52 +1,531 @@
 "use client";
-import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
-import { Photo, Win, Pill, Flow, EASE, useLive } from "./ui";
-import { MAIL } from "../home/content";
 
-const SRC = ["Sales", "Finance", "CRM", "Documents"];
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import {
+  Check,
+  ArrowRight,
+  Sparkles,
+  FileText,
+  Users,
+  Receipt,
+  Database,
+  CircleCheck,
+} from "lucide-react";
+
+import "./hero-slider.css";
+
+const slides = [
+  {
+    id: "executive",
+    eyebrow: "ENTERPRISE AI + AUTOMATION",
+    title: "AI that works the way your business works.",
+    description:
+      "Connect people, data and workflows — then let AI move the work forward.",
+    image: "/media/1.jpg",
+    type: "image",
+  },
+
+  {
+    id: "hr",
+    eyebrow: "AI FOR HR",
+    title: "Hire faster. Decide better.",
+    description:
+      "AI screens applications, finds the strongest matches and prepares a shortlist for your team.",
+    video: "/media/2.mp4",
+    type: "video",
+  },
+
+  {
+    id: "finance",
+    eyebrow: "AI FOR FINANCE",
+    title: "Turn paperwork into progress.",
+    description:
+      "AI reads invoices, checks the right information and sends exceptions to your team.",
+    video: "/media/3.mp4",
+    type: "video",
+  },
+];
 
 export default function Hero2() {
-  const still = useReducedMotion();
-  const [ref, live] = useLive();
-  const up = (d) => ({ initial: { opacity: 0, y: still ? 0 : 16 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, delay: d, ease: EASE } });
+  const [active, setActive] = useState(0);
+
+  const slide = slides[active];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((current) => (current + 1) % slides.length);
+    }, 8000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section data-tone="light" aria-labelledby="h2-hero" className="relative overflow-hidden pt-24 md:pt-28" data-world="blue" style={{ background: "linear-gradient(180deg,#f3f7ff 0%,#fbfaf7 100%)" }}>
-      <div className="h2-wrap grid items-center gap-8 pb-10 md:pb-16 lg:grid-cols-12">
-        <div className="lg:col-span-5">
-          <motion.p {...up(0)} className="h2-eyebrow">Enterprise AI + Automation</motion.p>
-          <h1 id="h2-hero" className="h2-h1 mt-4">AI that gets work done.</h1>
-          <motion.p {...up(0.25)} className="h2-lead mt-5">We build AI-powered workflows around the way your business actually works.</motion.p>
-          <motion.div {...up(0.4)} className="mt-7 flex flex-wrap gap-2.5">
-            <a href="#agents" className="h2-btn h2-btn-ink">Explore what we automate <span aria-hidden>→</span></a>
-            <a href={MAIL} className="h2-btn h2-btn-line">Talk to us</a>
-          </motion.div>
+    <section className={`hero hero-${slide.id}`}>
+
+      {/* =====================================================
+          SLIDE 1 — FULL IMAGE
+          ===================================================== */}
+
+      {slide.id === "executive" && (
+        <>
+          <div className="hero-background">
+
+            <Image
+              src="/media/1.jpg"
+              alt="Business leader"
+              fill
+              priority
+              className="hero-image"
+            />
+
+            <div className="hero-image-overlay" />
+
+          </div>
+
+          <div className="hero-layout executive-layout">
+
+            <HeroCopy slide={slide} />
+
+            <ExecutiveUI />
+
+          </div>
+        </>
+      )}
+
+
+      {/* =====================================================
+          SLIDE 2 — HR
+          ===================================================== */}
+
+      {slide.id === "hr" && (
+        <div className="hero-layout split-layout">
+
+          {/* LEFT */}
+          <div className="hero-panel hr-panel">
+
+            <HeroCopy slide={slide} />
+
+            <HRUI />
+
+          </div>
+
+
+          {/* RIGHT */}
+          <VideoPanel
+            src={slide.video}
+            label="HR WORKFLOW"
+            position="right"
+          />
+
+        </div>
+      )}
+
+
+      {/* =====================================================
+          SLIDE 3 — FINANCE
+          ===================================================== */}
+
+      {slide.id === "finance" && (
+        <div className="hero-layout split-layout">
+
+          {/* LEFT */}
+          <VideoPanel
+            src={slide.video}
+            label="FINANCE WORKFLOW"
+            position="left"
+          />
+
+
+          {/* RIGHT */}
+          <div className="hero-panel finance-panel">
+
+            <HeroCopy slide={slide} />
+
+            <FinanceUI />
+
+          </div>
+
+        </div>
+      )}
+
+
+      {/* =====================================================
+          CONTROLS
+          ===================================================== */}
+
+      <div className="hero-controls">
+
+        <div className="hero-counter">
+          0{active + 1}
+          <span>/ 03</span>
         </div>
 
-        {/* Person stays dominant: photo fills the column, UI sits to the side and below, never over the face. */}
-        <div ref={ref} className="relative lg:col-span-7">
-          <div className="grid grid-cols-12 gap-3 md:gap-4">
-            <Photo slot="hero" priority className="col-span-7 min-h-[22rem] rounded-[10px] md:min-h-[34rem]" />
-            <div className="col-span-5 flex flex-col justify-end gap-3 md:gap-4">
-              <Win title="Monthly reporting" className="h2-in">
-                <p className="text-[.7rem] font-semibold">Automate monthly reporting</p>
-                <ul className="mt-2 flex flex-wrap gap-1">{SRC.map((s) => <li key={s}><Pill k="no">{s}</Pill></li>)}</ul>
-                <svg viewBox="0 0 100 18" className="my-2 w-full" aria-hidden><path d="M50 0V18" stroke="#2f6fe4" className="h2-dash" strokeWidth="1.5" fill="none" /></svg>
-                <div className="rounded-lg p-2" style={{ background: "var(--w-light)" }}>
-                  <p className="flex items-center gap-1.5 text-[.7rem] font-semibold"><span className="h2-live inline-block h-1.5 w-1.5 rounded-full" style={{ background: "var(--w-acc)" }} />AI working</p>
-                  <div className="h2-bar mt-1.5"><i style={{ width: live ? "78%" : "10%", transition: "width 2.4s cubic-bezier(.21,.47,.32,.98)" }} /></div>
-                </div>
-              </Win>
-              <Win title="Report ready" className="hidden md:block">
-                <div className="flex items-center justify-between"><span className="text-[.72rem] font-semibold">October report</span><Pill>Ready</Pill></div>
-                <p className="mt-1 text-[.68rem]" style={{ color: "var(--soft)" }}>Revenue, open issues, 3 recommendations.</p>
-                <div className="mt-2 flex gap-1.5"><span className="h2-btn-s pri">Approve</span><span className="h2-btn-s">Edit</span></div>
-              </Win>
-            </div>
-          </div>
+        <div className="hero-progress">
+
+          {slides.map((item, index) => (
+            <button
+              key={item.id}
+              onClick={() => setActive(index)}
+              className={index === active ? "active" : ""}
+              aria-label={`Go to slide ${index + 1}`}
+            >
+              <span />
+            </button>
+          ))}
+
         </div>
+
       </div>
-      <div className="h2-wrap pb-8"><Flow stages={[{ k: "01 Task", t: "Monthly report" }, { k: "02 AI work", t: "Pulls data from 4 sources" }, { k: "03 Result", t: "Draft report" }, { k: "04 Human", t: "You approve" }]} run={live} className="max-w-3xl" /></div>
+
     </section>
+  );
+}
+
+
+/* =========================================================
+   HERO COPY
+   ========================================================= */
+
+function HeroCopy({ slide }) {
+  return (
+    <div className="hero-copy">
+
+      <div className="hero-eyebrow">
+
+        <Sparkles size={14} />
+
+        <span>{slide.eyebrow}</span>
+
+      </div>
+
+      <h1>{slide.title}</h1>
+
+      <p>{slide.description}</p>
+
+      <div className="hero-actions">
+
+        <a
+          href="#agents"
+          className="hero-primary"
+        >
+          See how it works
+          <ArrowRight size={16} />
+        </a>
+
+        <a
+          href="#contact"
+          className="hero-secondary"
+        >
+          Talk to MAD
+        </a>
+
+      </div>
+
+    </div>
+  );
+}
+
+
+/* =========================================================
+   VIDEO PANEL
+   ========================================================= */
+
+function VideoPanel({ src, label }) {
+  return (
+    <div className="video-panel">
+
+      <video
+        key={src}
+        className="hero-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster="/media/1.jpg"
+      >
+        <source
+          src={src}
+          type="video/mp4"
+        />
+      </video>
+
+      <div className="video-shade" />
+
+      <div className="video-label">
+        {label}
+      </div>
+
+    </div>
+  );
+}
+
+
+/* =========================================================
+   EXECUTIVE UI
+   ========================================================= */
+
+function ExecutiveUI() {
+  return (
+    <div className="ai-window executive-window">
+
+      <div className="window-header">
+
+        <div>
+          <span className="status-dot" />
+          AI WORKFLOW
+        </div>
+
+        <span>October report</span>
+
+      </div>
+
+
+      <div className="source-list">
+
+        <Source
+          icon={<Database />}
+          name="Sales data"
+        />
+
+        <Source
+          icon={<Receipt />}
+          name="Finance data"
+        />
+
+        <Source
+          icon={<Users />}
+          name="CRM"
+        />
+
+        <Source
+          icon={<FileText />}
+          name="Documents"
+        />
+
+      </div>
+
+
+      <div className="ai-processing">
+
+        <Sparkles size={16} />
+
+        <div>
+
+          <strong>AI is working</strong>
+
+          <span>
+            Preparing your report...
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div className="result-card">
+
+        <div>
+
+          <span>REPORT READY</span>
+
+          <strong>
+            October business report
+          </strong>
+
+        </div>
+
+        <CircleCheck size={21} />
+
+      </div>
+
+
+      <div className="approval-row">
+
+        <button>Review</button>
+
+        <button>Edit</button>
+
+        <button className="approve">
+          Approve
+        </button>
+
+      </div>
+
+    </div>
+  );
+}
+
+
+/* =========================================================
+   HR UI
+   ========================================================= */
+
+function HRUI() {
+  return (
+    <div className="ai-window compact-ai hr-window">
+
+      <div className="window-header">
+
+        <div>
+          <span className="status-dot" />
+          AI RECRUITING AGENT
+        </div>
+
+        <span>124 applications</span>
+
+      </div>
+
+
+      <div className="compact-title">
+        Product Designer
+      </div>
+
+
+      <div className="scan-row">
+
+        <span>Scanning applications</span>
+
+        <strong>78%</strong>
+
+      </div>
+
+
+      <div className="progress-track">
+        <span />
+      </div>
+
+
+      <div className="compact-checks">
+
+        <CheckRow text="Skills matched" />
+
+        <CheckRow text="Experience matched" />
+
+        <CheckRow text="Role requirements checked" />
+
+      </div>
+
+
+      <div className="shortlist-row">
+
+        <div>
+
+          <span>SHORTLISTED</span>
+
+          <strong>18 candidates</strong>
+
+        </div>
+
+        <ArrowRight size={17} />
+
+      </div>
+
+    </div>
+  );
+}
+
+
+/* =========================================================
+   FINANCE UI
+   ========================================================= */
+
+function FinanceUI() {
+  return (
+    <div className="ai-window compact-ai finance-window">
+
+      <div className="window-header">
+
+        <div>
+          <span className="status-dot" />
+          INVOICE PROCESSING
+        </div>
+
+        <span>AI review</span>
+
+      </div>
+
+
+      <div className="invoice-number">
+        Invoice #INV-2841
+      </div>
+
+
+      <div className="invoice-value">
+        ₹84,600
+      </div>
+
+
+      <div className="compact-checks">
+
+        <CheckRow text="Purchase order" />
+
+        <CheckRow text="Goods receipt" />
+
+        <CheckRow text="Tax information" />
+
+      </div>
+
+
+      <div className="ready-state">
+
+        <CircleCheck size={18} />
+
+        <div>
+
+          <strong>
+            Ready for approval
+          </strong>
+
+          <span>
+            AI checks completed
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+  );
+}
+
+
+/* =========================================================
+   SOURCE
+   ========================================================= */
+
+function Source({ icon, name }) {
+  return (
+    <div className="source-row">
+
+      <div className="source-icon">
+        {icon}
+      </div>
+
+      <span>{name}</span>
+
+      <Check size={14} />
+
+    </div>
+  );
+}
+
+
+/* =========================================================
+   CHECK ROW
+   ========================================================= */
+
+function CheckRow({ text }) {
+  return (
+    <div className="check-row">
+
+      <span className="check-circle">
+        <Check size={11} />
+      </span>
+
+      <span>{text}</span>
+
+    </div>
   );
 }

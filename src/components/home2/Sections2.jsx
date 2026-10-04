@@ -2,8 +2,9 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Photo, Win, Pill, Avatar, Count, EASE, useLive, useStepper } from "./ui";
+import { ChevronLeft, ChevronRight, ShieldCheck, GitBranch, UserCheck, FileCheck2 } from "lucide-react";
+import { Photo, Win, Pill, Avatar, EASE, useLive, useStepper } from "./ui";
+import VimeoFeature from "./VimeoFeature";
 
 /* 07 MARKETING AUTOMATION: light red world. Brief to analytics, with people and content, not just boxes. */
 const MK = ["Brand brief", "Trend research", "Creator shortlist", "Outreach", "UGC + video edit", "Caption", "Human approval", "Publish", "Analytics"];
@@ -47,14 +48,23 @@ export function MadFilmsBand() {
       <div aria-hidden className="absolute inset-0" style={{ background: "radial-gradient(60% 60% at 80% 20%, rgba(255,90,31,.25), transparent 70%), radial-gradient(40% 40% at 0% 100%, rgba(200,30,20,.2), transparent 70%)" }} />
       <div className="h2-wrap relative">
         <p className="h2-eyebrow" style={{ color: "#ff7a45" }}>MAD Films</p>
-        <h2 id="h2-mf" className="mt-3 font-semibold uppercase leading-[.9] tracking-[-.04em]" style={{ fontSize: "clamp(2.8rem,9vw,8.5rem)" }}>Automation<br /><span style={{ color: "#ff5a1f" }}>meets creativity.</span></h2>
+        <h2 id="h2-mf" className="mt-3 max-w-6xl font-semibold uppercase leading-[.88] tracking-[-.05em]" style={{ fontSize: "clamp(2.8rem,8.5vw,8rem)" }}>Video that moves<br /><span style={{ color: "#ff5a1f" }}>at campaign speed.</span></h2>
+        <p className="mt-5 max-w-2xl text-[1rem] leading-relaxed text-white/65 md:text-[1.15rem]">On-brand video storytelling powered by cinematic production, motion, AI storyboarding and rapid post-production.</p>
         <div className="mt-8 grid grid-cols-12 gap-3 md:gap-4">
           <Photo slot="madFilms" className="col-span-12 h-56 rounded-[6px] md:h-[24rem] lg:col-span-7" />
-          <Photo slot="filmmaker" className="col-span-7 h-44 rounded-[6px] md:h-[24rem] lg:col-span-3" />
-          <Photo slot="creator" className="col-span-5 h-44 rounded-[6px] md:h-[24rem] lg:col-span-2" />
+          <div className="col-span-7 lg:col-span-3">
+            <Photo slot="filmmaker" className="h-44 rounded-[6px] md:h-[24rem]" />
+          </div>
+          <div className="col-span-5 lg:col-span-2">
+            <Photo slot="creator" className="h-44 rounded-[6px] md:h-[24rem]" />
+          </div>
         </div>
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-5">
-          <ul className="flex max-w-2xl flex-wrap gap-2">{items.map((t) => <li key={t} className="rounded-full border px-3 py-1.5 text-[.78rem]" style={{ borderColor: "rgba(255,255,255,.22)" }}>{t}</li>)}</ul>
+        <VimeoFeature />
+        <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <ul className="flex max-w-3xl flex-wrap gap-2">{items.map((t) => <li key={t} className="rounded-full border px-3 py-1.5 text-[.78rem]" style={{ borderColor: "rgba(255,255,255,.22)" }}>{t}</li>)}</ul>
+            <p className="mt-4 text-[.75rem] uppercase tracking-[.1em] text-white/45">Selected work · NESTLEVEL Digital Podcast · Recruiter Toolkit · Talent Attraction Insights</p>
+          </div>
           <Link href="/studio/madfilms" className="h2-btn h2-btn-orange">Explore MAD Films <span aria-hidden>→</span></Link>
         </div>
       </div>
@@ -64,9 +74,9 @@ export function MadFilmsBand() {
 
 /* 09 CUSTOMER STORIES: slider. Only real clients named; no metrics, quotes or logos are invented. */
 const STORIES = [
-  { co: "Nestlé", tag: "Consumer brand", photo: "story1", world: "blue", t: "Content and automation for a global consumer brand.", note: "Details to be added by the MAD team." },
-  { co: "Ministry of Defence", tag: "Government", photo: "story2", world: "gold", t: "Intelligent systems for a public-sector team.", note: "Details to be added by the MAD team." },
-  { co: "mCURA", tag: "Healthcare", photo: "story3", world: "green", t: "Care-team workflows with people kept in charge.", note: "Details to be added by the MAD team." },
+  { co: "Nestlé", tag: "Talent Attraction Insights", photo: "story1", world: "blue", t: "A centralised view across talent attraction, campaign performance, reputation and employee advocacy.", note: "Built around an AI-generated NLP system. Pilot across MENA, Oceania, the Philippines and MYSG.", metrics: [["562", "active users"], ["620K+", "content reach"]] },
+  { co: "Ministry of Defence", tag: "Government", photo: "story2", world: "gold", t: "Government and defence work built around the needs of a public-sector team.", note: "Selected work from MAD. Contact the team for project details." },
+  { co: "mCURA", tag: "Healthcare", photo: "story3", world: "green", t: "Healthcare technology and care-team workflows designed around real operational needs.", note: "Selected work from MAD. Contact the team for project details." },
 ];
 export function Stories() {
   const [i, setI] = useState(0);
@@ -84,7 +94,12 @@ export function Stories() {
             <Photo slot={s.photo} className="col-span-12 h-60 md:h-[26rem] lg:col-span-8" />
             <div className="col-span-12 flex flex-col justify-between gap-6 p-5 md:p-8 lg:col-span-4" style={{ color: "var(--w-dark)" }}>
               <div><p className="h2-eyebrow">{s.tag}</p><p className="mt-2 text-[2rem] font-semibold tracking-[-.04em]">{s.co}</p><p className="mt-3 text-[1.05rem] leading-snug">{s.t}</p><p className="mt-3 text-[.75rem] opacity-60">{s.note}</p></div>
-              <div className="flex items-center justify-between"><a href="#contact" className="h2-btn h2-btn-ink">Talk to us →</a>
+              {s.metrics && (
+                <div className="mt-5 grid grid-cols-2 gap-2">
+                  {s.metrics.map(([n, label]) => <div key={label} className="rounded-xl border border-black/10 bg-white/45 p-3"><p className="text-[1.45rem] font-semibold tracking-[-.04em]">{n}</p><p className="mt-0.5 text-[.68rem] uppercase tracking-[.08em] opacity-60">{label}</p></div>)}
+                </div>
+              )}
+              <div className="mt-6 flex items-center justify-between"><a href="#contact" className="h2-btn h2-btn-ink">Talk to us →</a>
                 <span className="text-[.75rem] tabular-nums opacity-60">{i + 1} / {STORIES.length}</span></div>
             </div>
           </motion.div>
@@ -114,12 +129,32 @@ export function HumanAI() {
 
 /* 11 ENTERPRISE: facts we can state without inventing numbers. */
 export function Enterprise() {
-  const f = [["Your systems", "Connects to the CRM, ERP and APIs you already run."], ["Your permissions", "Works inside the access rules you set."], ["Your approvals", "Sensitive steps wait for a person."], ["Your audit trail", "Each action is logged for review."]];
+  const f = [
+    [ShieldCheck, "Your systems", "Connects to the CRM, ERP and APIs you already run."],
+    [GitBranch, "Your permissions", "Works inside the access rules you set."],
+    [UserCheck, "Your approvals", "Sensitive steps wait for a person."],
+    [FileCheck2, "Your audit trail", "Each action is logged for review."],
+  ];
   return (
     <section id="enterprise" data-tone="light" aria-labelledby="h2-en" className="h2-sec" style={{ background: "#fff" }} data-world="blue">
-      <div className="h2-wrap grid gap-8 lg:grid-cols-12">
-        <h2 id="h2-en" className="h2-h2 lg:col-span-5">Serious automation. Without the complexity.</h2>
-        <div className="grid grid-cols-2 gap-3 lg:col-span-7">{f.map(([k, v], n) => <div key={k} className="rounded-[14px] p-4 md:p-6" style={{ background: n === 0 ? "var(--w-dark)" : "var(--w-light)", color: n === 0 ? "#fff" : "var(--w-dark)", gridColumn: n === 0 ? "span 2" : undefined }}><p className="text-[1.15rem] font-semibold tracking-tight md:text-[1.4rem]">{k}</p><p className="mt-1.5 text-[.85rem] opacity-80">{v}</p></div>)}</div>
+      <div className="h2-wrap grid items-start gap-8 lg:grid-cols-12">
+        <div className="lg:col-span-5 lg:sticky lg:top-28">
+          <p className="h2-eyebrow">Built for the real world</p>
+          <h2 id="h2-en" className="h2-h2 mt-3">Serious automation. Without the complexity.</h2>
+          <p className="h2-lead mt-4">The point is not to replace your systems. It is to make the work between them easier to run.</p>
+        </div>
+        <div className="grid grid-cols-2 gap-3 lg:col-span-7">
+          {f.map(([Icon, k, v], n) => (
+            <div key={k} className={`group rounded-[18px] p-5 md:p-7 ${n === 0 ? "col-span-2" : ""}`} style={{ background: n === 0 ? "var(--w-dark)" : "var(--w-light)", color: n === 0 ? "#fff" : "var(--w-dark)" }}>
+              <div className="flex items-start justify-between gap-4">
+                <span className="grid h-11 w-11 place-items-center rounded-xl" style={{ background: n === 0 ? "rgba(255,255,255,.1)" : "rgba(255,255,255,.72)" }}><Icon size={19} strokeWidth={1.7} /></span>
+                <span className="text-[.65rem] uppercase tracking-[.14em] opacity-50">0{n + 1}</span>
+              </div>
+              <p className="mt-8 text-[1.15rem] font-semibold tracking-tight md:text-[1.4rem]">{k}</p>
+              <p className="mt-1.5 max-w-md text-[.85rem] leading-relaxed opacity-75">{v}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

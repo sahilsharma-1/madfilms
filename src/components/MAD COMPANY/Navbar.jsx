@@ -66,7 +66,7 @@ export default function Navbar({ adaptive = false }) {
   return (
     <header ref={header} className={`fixed inset-x-0 top-0 z-50 ${T.bar}`} onMouseLeave={() => setMenu(null)}>
       <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}
-        className={`border-b backdrop-blur-xl backdrop-saturate-150 transition-colors duration-500 ${open || scrolled ? `${T.solid} ${T.edge}` : "border-transparent bg-transparent"}`}>
+        className={`border-b backdrop-blur-xl backdrop-saturate-150 transition-colors duration-500 ${T.solid} ${T.edge}`}>
         <div className="mx-auto flex h-16 max-w-[90rem] items-center justify-between px-5 md:px-8 xl:px-12">
           <Link href="/" aria-label="MAD Company home" className="flex items-center">
             <Image src="/images/MAD FILMS LOGO.png" alt="MAD" width={180} height={60} priority className={`h-9 w-auto transition ${adaptive && light && !mobile ? "invert" : ""}`} />
