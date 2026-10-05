@@ -1,0 +1,6 @@
+.simple-process { grid-template-columns:repeat(5,minmax(0,1fr)); }
+.automation-content { animation:automation-reveal .3s ease both; }
+@keyframes automation-reveal { from { opacity:.3; transform:translateY(5px); } to { opacity:1; transform:none; } }
+@media (max-width:1000px) { .simple-process { grid-template-columns:repeat(5,minmax(0,1fr)); } }
+@media (max-width:650px) { .simple-process { grid-template-columns:1fr 1fr; } }
+@media (prefers-reduced-motion:reduce) { .automation-content { animation:none; } }

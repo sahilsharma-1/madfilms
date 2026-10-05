@@ -4,18 +4,25 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ChevronDown, ArrowUpRight } from "lucide-react";
-import { SERVICES, INDUSTRIES } from "../home/content";
+import { INDUSTRIES } from "../home/content";
 
 // Every target is a real route or a homepage anchor. Studio pages render this bar with no props (always dark);
 // the homepage passes `adaptive` and the bar flips between dark and light depending on the section beneath it.
 const LINKS = [
-  { label: "Platform", href: "/#custom" },
-  { label: "Solutions", href: "/#workflows" },
-  { label: "AI Agents", href: "/#agents" },
-  { label: "Automation", href: "/studio/automate" },
-  { label: "Creative", href: "/#marketing" },
-  { label: "Customers", href: "/#work" },
-  { label: "Resources", href: "/agents" },
+  { label: "Solutions", href: "/#capabilities" },
+  { label: "What We Automate", href: "/#automate" },
+  { label: "Packages", href: "/#packages" },
+  { label: "Work", href: "/#work" },
+  { label: "Studio", href: "/studio/madfilms" },
+  { label: "About", href: "/#about" },
+];
+const SOLUTIONS = [
+  { name: "AI Agents", line: "Custom agents for the work your teams do.", href: "/#automate" },
+  { name: "Business Automation", line: "Workflows that take repetitive work off your team.", href: "/#automate" },
+  { name: "SaaS & Software", line: "Products and software built around your business.", href: "/#packages" },
+  { name: "Data & Intelligence", line: "Analytics and systems shaped around your data.", href: "/#capabilities" },
+  { name: "Creative & Motion", line: "Motion, 3D, product films and creative technology.", href: "/#madfilms" },
+  { name: "UGC & Content", line: "Creator content and stories for social channels.", href: "/#madfilms" },
 ];
 const EASE = [0.21, 0.47, 0.32, 0.98];
 const DARK = { bar: "text-white", solid: "bg-[#05070b]/85", link: "text-white/75 hover:bg-white/10 hover:text-white", sub: "text-white/50", rule: "border-white/10", hover: "hover:bg-white/8", cta: "bg-white text-black hover:bg-[#dbeafe]", edge: "border-white/10" };
@@ -74,14 +81,15 @@ export default function Navbar({ adaptive = false }) {
 
           <nav aria-label="Primary" className="hidden items-center gap-0.5 lg:flex">
             {LINKS.map((l) => (
-              <Link key={l.label} href={l.href} onMouseEnter={() => setMenu(null)} className={`rounded-full px-4 py-2 text-sm transition-colors ${T.link}`}>{l.label}</Link>
+              l.label === "Solutions" ? <Trigger key={l.label} id="what">{l.label}</Trigger> :
+                <Link key={l.label} href={l.href} onMouseEnter={() => setMenu(null)} className={`rounded-full px-4 py-2 text-sm transition-colors ${T.link}`}>{l.label}</Link>
             ))}
           </nav>
 
           <div className="hidden items-center gap-2 lg:flex">
             <Link href="/studio/madfilms" className="rounded-full border border-[#ff5a1f] px-4 py-2 text-sm font-semibold tracking-wide text-[#ff5a1f] transition-colors hover:bg-[#ff5a1f] hover:text-white">MAD FILMS</Link>
             <Link href="/#contact" className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors ${T.cta}`}>
-              Talk to us <span aria-hidden>→</span>
+              Talk to MAD <span aria-hidden>→</span>
             </Link>
           </div>
 
@@ -100,8 +108,8 @@ export default function Navbar({ adaptive = false }) {
                     {menu === "what" ? "One partner. From AI strategy to production." : "AI across every part of your business."}
                   </p>
                   <ul className="grid grid-cols-3 gap-x-6 gap-y-1">
-                    {menu === "what" && SERVICES.map((c) => (
-                      <li key={c.id}>
+                    {menu === "what" && SOLUTIONS.map((c) => (
+                      <li key={c.name}>
                         <Link href={c.href} onClick={() => setMenu(null)} className={`group block rounded-xl px-4 py-3 transition-colors ${T.hover}`}>
                           <span className="flex items-center justify-between text-[15px] font-medium">{c.name}<ArrowUpRight size={14} className="opacity-0 transition group-hover:opacity-60" /></span>
                           <span className={`mt-0.5 block text-sm leading-snug ${T.sub}`}>{c.line}</span>
@@ -129,23 +137,15 @@ export default function Navbar({ adaptive = false }) {
         {mobile && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}
             className="fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-[#05070b] px-6 pb-10 pt-6 text-white lg:hidden">
-            <p className="mb-2 text-sm text-white/45">What we do</p>
+            <p className="mb-2 text-sm text-white/45">MAD Company</p>
             <ul>
-              {SERVICES.map((c, i) => (
-                <motion.li key={c.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.025 * i, duration: 0.35 }} className="border-b border-white/10">
-                  <Link href={c.href} onClick={() => setMobile(false)} className="block py-3.5 text-xl font-medium tracking-tight">{c.name}</Link>
-                </motion.li>
-              ))}
+              {LINKS.map((l, i) => (<motion.li key={l.label} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.025 * i, duration: 0.35 }} className="border-b border-white/10">
+                <Link href={l.href} onClick={() => setMobile(false)} className="block py-3.5 text-xl font-medium tracking-tight">{l.label}</Link>
+                {l.label === "Solutions" && <div className="grid grid-cols-2 gap-x-3 pb-3">{SOLUTIONS.map((s) => <Link key={s.name} href={s.href} onClick={() => setMobile(false)} className="py-2 text-sm text-white/65">{s.name}</Link>)}</div>}
+              </motion.li>))}
             </ul>
-            <p className="mb-2 mt-9 text-sm text-white/45">Industries</p>
-            <ul className="grid grid-cols-2 gap-x-5">
-              {INDUSTRIES.map((c) => (<li key={c.id}><Link href="/#industries" onClick={() => pickIndustry(c.id)} className="block border-b border-white/10 py-3 text-[15px] text-white/85">{c.name}</Link></li>))}
-            </ul>
-            <Link href="/studio/madfilms" onClick={() => setMobile(false)} className="mt-8 block rounded-full border border-[#ff5a1f] py-3 text-center text-sm font-semibold text-[#ff5a1f]">MAD FILMS</Link>
-            <ul className="mt-6 grid grid-cols-2 gap-x-4">
-              {LINKS.map((l) => (<li key={l.label}><Link href={l.href} onClick={() => setMobile(false)} className="block border-b border-white/10 py-3 text-[15px] text-white/85">{l.label}</Link></li>))}
-            </ul>
-            <Link href="/#contact" onClick={() => setMobile(false)} className="mt-10 flex items-center justify-center gap-2 rounded-full bg-white py-4 text-sm font-medium text-black">Talk to us <span aria-hidden>→</span></Link>
+            <Link href="/studio/madfilms" onClick={() => setMobile(false)} className="mt-5 block rounded-full border border-[#ff5a1f] py-3 text-center text-sm font-semibold text-[#ff5a1f]">Explore MAD Films</Link>
+            <Link href="/#contact" onClick={() => setMobile(false)} className="mt-5 flex items-center justify-center gap-2 rounded-full bg-white py-4 text-sm font-medium text-black">Talk to MAD <span aria-hidden>→</span></Link>
           </motion.div>
         )}
       </AnimatePresence>

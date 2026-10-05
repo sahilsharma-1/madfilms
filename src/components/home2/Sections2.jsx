@@ -47,9 +47,9 @@ export function MadFilmsBand() {
     <section id="madfilms" data-tone="dark" aria-labelledby="h2-mf" className="h2-film h2-grain relative overflow-hidden h2-sec" data-world="film">
       <div aria-hidden className="absolute inset-0" style={{ background: "radial-gradient(60% 60% at 80% 20%, rgba(255,90,31,.25), transparent 70%), radial-gradient(40% 40% at 0% 100%, rgba(200,30,20,.2), transparent 70%)" }} />
       <div className="h2-wrap relative">
-        <p className="h2-eyebrow" style={{ color: "#ff7a45" }}>MAD Films</p>
-        <h2 id="h2-mf" className="mt-3 max-w-6xl font-semibold uppercase leading-[.88] tracking-[-.05em]" style={{ fontSize: "clamp(2.8rem,8.5vw,8rem)" }}>Video that moves<br /><span style={{ color: "#ff5a1f" }}>at campaign speed.</span></h2>
-        <p className="mt-5 max-w-2xl text-[1rem] leading-relaxed text-white/65 md:text-[1.15rem]">On-brand video storytelling powered by cinematic production, motion, AI storyboarding and rapid post-production.</p>
+        <p className="h2-eyebrow" style={{ color: "#ff7a45" }}>MAD STUDIO · A CAPABILITY OF MAD COMPANY</p>
+        <h2 id="h2-mf" className="mt-3 max-w-6xl font-semibold leading-[.95] tracking-[-.05em]" style={{ fontSize: "clamp(2.7rem,7vw,6.8rem)" }}>And when the work needs to be seen,<br /><span style={{ color: "#ff8054" }}>we make that too.</span></h2>
+        <p className="mt-5 max-w-2xl text-[1rem] leading-relaxed text-white/65 md:text-[1.15rem]">From product films to motion systems, UGC and AI-powered content, MAD Studio helps businesses turn ideas into visual experiences.</p>
         <div className="mt-8 grid grid-cols-12 gap-3 md:gap-4">
           <Photo slot="madFilms" className="col-span-12 h-56 rounded-[6px] md:h-[24rem] lg:col-span-7" />
           <div className="col-span-7 lg:col-span-3">
@@ -65,7 +65,7 @@ export function MadFilmsBand() {
             <ul className="flex max-w-3xl flex-wrap gap-2">{items.map((t) => <li key={t} className="rounded-full border px-3 py-1.5 text-[.78rem]" style={{ borderColor: "rgba(255,255,255,.22)" }}>{t}</li>)}</ul>
             <p className="mt-4 text-[.75rem] uppercase tracking-[.1em] text-white/45">Selected work · NESTLEVEL Digital Podcast · Recruiter Toolkit · Talent Attraction Insights</p>
           </div>
-          <Link href="/studio/madfilms" className="h2-btn h2-btn-orange">Explore MAD Films <span aria-hidden>→</span></Link>
+          <Link href="/studio/madfilms" className="h2-btn h2-btn-orange">Explore MAD Studio <span aria-hidden>→</span></Link>
         </div>
       </div>
     </section>
@@ -130,28 +130,24 @@ export function HumanAI() {
 /* 11 ENTERPRISE: facts we can state without inventing numbers. */
 export function Enterprise() {
   const f = [
-    [ShieldCheck, "Your systems", "Connects to the CRM, ERP and APIs you already run."],
-    [GitBranch, "Your permissions", "Works inside the access rules you set."],
-    [UserCheck, "Your approvals", "Sensitive steps wait for a person."],
-    [FileCheck2, "Your audit trail", "Each action is logged for review."],
+    [ShieldCheck, "Custom-built AI", "Workflows are designed around the job your team needs done."],
+    [GitBranch, "Existing tools", "Connect the process to the tools your business already uses."],
+    [UserCheck, "Human approval", "Your team reviews and decides when a person needs to be involved."],
+    [FileCheck2, "Business workflows", "Built around your rules, information and approval process."],
   ];
   return (
-    <section id="enterprise" data-tone="light" aria-labelledby="h2-en" className="h2-sec" style={{ background: "#fff" }} data-world="blue">
-      <div className="h2-wrap grid items-start gap-8 lg:grid-cols-12">
-        <div className="lg:col-span-5 lg:sticky lg:top-28">
+    <section id="enterprise" data-tone="light" aria-labelledby="h2-en" className="h2-sec home-trust" style={{ background: "#fff" }} data-world="blue">
+      <div className="h2-wrap">
+        <div className="home-trust-intro">
           <p className="h2-eyebrow">Built for the real world</p>
-          <h2 id="h2-en" className="h2-h2 mt-3">Serious automation. Without the complexity.</h2>
-          <p className="h2-lead mt-4">The point is not to replace your systems. It is to make the work between them easier to run.</p>
+          <h2 id="h2-en" className="h2-h2 mt-3">Made to fit the way your business works.</h2>
+          <p className="h2-lead mt-4">Custom workflows connect people, information and the tools you already use.</p>
         </div>
-        <div className="grid grid-cols-2 gap-3 lg:col-span-7">
-          {f.map(([Icon, k, v], n) => (
-            <div key={k} className={`group rounded-[18px] p-5 md:p-7 ${n === 0 ? "col-span-2" : ""}`} style={{ background: n === 0 ? "var(--w-dark)" : "var(--w-light)", color: n === 0 ? "#fff" : "var(--w-dark)" }}>
-              <div className="flex items-start justify-between gap-4">
-                <span className="grid h-11 w-11 place-items-center rounded-xl" style={{ background: n === 0 ? "rgba(255,255,255,.1)" : "rgba(255,255,255,.72)" }}><Icon size={19} strokeWidth={1.7} /></span>
-                <span className="text-[.65rem] uppercase tracking-[.14em] opacity-50">0{n + 1}</span>
-              </div>
-              <p className="mt-8 text-[1.15rem] font-semibold tracking-tight md:text-[1.4rem]">{k}</p>
-              <p className="mt-1.5 max-w-md text-[.85rem] leading-relaxed opacity-75">{v}</p>
+        <div className="home-trust-list">
+          {f.map(([Icon, k, v]) => (
+            <div key={k} className="home-trust-item">
+              <span className="home-trust-icon"><Icon size={17} strokeWidth={1.7} /></span>
+              <div><p>{k}</p><span>{v}</span></div>
             </div>
           ))}
         </div>

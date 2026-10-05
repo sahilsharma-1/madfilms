@@ -14,6 +14,45 @@
   color: #0e1728;
 }
 
+/* Homepage simplification: task tabs and a compact workflow preview. */
+.agents-section { padding:clamp(58px,7vw,96px) clamp(20px,6vw,90px); background:#fff; }
+.agents-header { max-width:1280px; grid-template-columns:1fr minmax(230px,.58fr); gap:36px; margin-bottom:27px; }
+.agents-eyebrow { margin-bottom:12px; color:#526986; }
+.agents-header h2 { max-width:760px; font-size:clamp(2.35rem,5vw,4.8rem); line-height:1; }
+.agents-header p { max-width:360px; margin-bottom:5px; font-size:1rem; }
+.automation-selector { gap:8px; margin-bottom:14px; padding:4px 0 8px; scroll-snap-type:x proximity; }
+.automation-tab { scroll-snap-align:start; height:40px; padding:0 14px; background:#fff; }
+.automation-tab[aria-selected="true"] { background:#132f56; border-color:#132f56; box-shadow:none; }
+.automation-tab:focus-visible { outline:2px solid #5679a7; outline-offset:2px; }
+.automation-stage { min-height:0; grid-template-columns:minmax(270px,.78fr) minmax(0,1.22fr); border-radius:6px; box-shadow:0 18px 44px rgba(16,35,60,.07); }
+.automation-photo { min-height:435px; }
+.automation-content { min-height:435px; padding:32px clamp(24px,3.6vw,48px) 26px; }
+.workflow-label { margin-bottom:13px; }
+.automation-content h3 { font-size:clamp(1.95rem,3vw,3rem); }
+.automation-description { margin:14px 0 20px; font-size:.92rem; }
+.simple-process { margin-top:auto; padding:16px 0; }
+.process-step { padding-right:10px; }
+.process-number { margin-bottom:9px; }
+.process-icon { width:30px; height:30px; margin-bottom:9px; border-radius:7px; }
+.process-line { top:44px; }
+.process-copy strong { font-size:.76rem; }
+.automation-details { gap:6px; padding-top:13px; }
+.automation-details span { padding:6px 8px; font-size:.63rem; }
+.automation-footer { margin-top:16px; }
+.automation-footer button { padding:7px 0; }
+.home-trust .h2-wrap { display:grid; grid-template-columns:minmax(250px,.8fr) minmax(0,1.5fr); align-items:end; gap:42px; }
+.home-trust-intro { max-width:490px; }
+.home-trust-list { display:grid; grid-template-columns:1fr 1fr; column-gap:26px; }
+.home-trust-item { display:flex; align-items:flex-start; gap:12px; padding:17px 0; border-top:1px solid rgba(13,21,38,.13); }
+.home-trust-icon { display:grid; width:30px; height:30px; flex:none; place-items:center; background:#edf2f7; color:#173c6a; }
+.home-trust-item p { margin:0; color:#152943; font-size:.9rem; font-weight:650; }
+.home-trust-item div > span { display:block; margin-top:4px; color:#647184; font-size:.73rem; line-height:1.45; }
+.automation-content { animation: automation-reveal .3s ease both; }
+.simple-process { grid-template-columns:repeat(5,minmax(0,1fr)); }
+@keyframes automation-reveal { from { opacity:.3; transform:translateY(5px); } to { opacity:1; transform:none; } }
+@media (max-width:1000px) { .agents-section { padding:70px 28px; }.agents-header { grid-template-columns:1fr; gap:15px; }.automation-stage { grid-template-columns:1fr 1.1fr; }.automation-photo { min-height:390px; }.automation-content { min-height:390px; }.home-trust .h2-wrap { grid-template-columns:1fr; gap:26px; } }
+@media (max-width:650px) { .agents-section { padding:58px 18px; }.agents-header { margin-bottom:20px; }.agents-header h2 { max-width:520px; font-size:clamp(2.5rem,11vw,3.5rem); }.agents-header p { font-size:.92rem; }.automation-selector { margin-right:-18px; padding-right:18px; }.automation-tab { height:39px; font-size:.75rem; }.automation-stage { grid-template-columns:1fr; border-radius:5px; }.automation-photo { min-height:245px; height:62vw; max-height:330px; }.automation-content { min-height:0; padding:25px 20px 21px; }.automation-content h3 { font-size:clamp(1.8rem,8vw,2.4rem); }.automation-description { font-size:.85rem; }.simple-process { grid-template-columns:1fr 1fr; gap:19px 12px; margin-top:8px; }.process-step { display:grid; grid-template-columns:26px 1fr; column-gap:9px; padding:0; }.process-number { grid-row:span 2; margin:2px 0 0; }.process-icon { width:27px; height:27px; margin:0 0 6px; }.process-copy { grid-column:2; }.process-copy strong { max-width:none; font-size:.75rem; }.process-line { display:none; }.automation-details span { font-size:.58rem; }.automation-footer { align-items:center; flex-direction:row; gap:8px; }.automation-footer > span { font-size:.66rem; }.automation-footer button { font-size:.7rem; }.home-trust-list { grid-template-columns:1fr; }.home-trust-item { padding:13px 0; } }
+
 /* =========================================================
    HEADER
    ========================================================= */
@@ -759,3 +798,23 @@
   }
 
 }
+
+/* Final overrides for the homepage presentation. */
+.agents-section { padding:clamp(58px,7vw,96px) clamp(20px,6vw,90px); background:#fff; }
+.agents-header { grid-template-columns:1fr minmax(230px,.58fr); gap:36px; margin-bottom:27px; }
+.agents-header h2 { max-width:760px; font-size:clamp(2.35rem,5vw,4.8rem); line-height:1; }
+.agents-header p { max-width:360px; margin-bottom:5px; font-size:1rem; }
+.automation-selector { gap:8px; margin-bottom:14px; padding:4px 0 8px; scroll-snap-type:x proximity; }
+.automation-tab { scroll-snap-align:start; height:40px; padding:0 14px; background:#fff; }
+.automation-tab[aria-selected="true"] { background:#132f56; border-color:#132f56; box-shadow:none; }
+.automation-stage { min-height:0; grid-template-columns:minmax(270px,.78fr) minmax(0,1.22fr); border-radius:6px; box-shadow:0 18px 44px rgba(16,35,60,.07); }
+.automation-photo { min-height:435px; }
+.automation-content { min-height:435px; padding:32px clamp(24px,3.6vw,48px) 26px; }
+.automation-content h3 { font-size:clamp(1.95rem,3vw,3rem); }
+.automation-description { margin:14px 0 20px; font-size:.92rem; }
+.simple-process { margin-top:auto; padding:16px 0; }
+.process-step { padding-right:10px; }.process-number { margin-bottom:9px; }.process-icon { width:30px; height:30px; margin-bottom:9px; border-radius:7px; }.process-line { top:44px; }.process-copy strong { font-size:.76rem; }
+.automation-details { gap:6px; padding-top:13px; }.automation-details span { padding:6px 8px; font-size:.63rem; }.automation-footer { margin-top:16px; }.automation-footer button { padding:7px 0; }
+.home-trust .h2-wrap { display:grid; grid-template-columns:minmax(250px,.8fr) minmax(0,1.5fr); align-items:end; gap:42px; }.home-trust-intro { max-width:490px; }.home-trust-list { display:grid; grid-template-columns:1fr 1fr; column-gap:26px; }.home-trust-item { display:flex; align-items:flex-start; gap:12px; padding:17px 0; border-top:1px solid rgba(13,21,38,.13); }.home-trust-icon { display:grid; width:30px; height:30px; flex:none; place-items:center; background:#edf2f7; color:#173c6a; }.home-trust-item p { margin:0; color:#152943; font-size:.9rem; font-weight:650; }.home-trust-item div > span { display:block; margin-top:4px; color:#647184; font-size:.73rem; line-height:1.45; }
+@media (max-width:1000px) { .agents-section { padding:70px 28px; }.agents-header { grid-template-columns:1fr; gap:15px; }.automation-stage { grid-template-columns:1fr 1.1fr; }.automation-photo,.automation-content { min-height:390px; }.home-trust .h2-wrap { grid-template-columns:1fr; gap:26px; } }
+@media (max-width:650px) { .agents-section { padding:58px 18px; }.agents-header { margin-bottom:20px; }.agents-header h2 { max-width:520px; font-size:clamp(2.5rem,11vw,3.5rem); }.agents-header p { font-size:.92rem; }.automation-selector { margin-right:-18px; padding-right:18px; }.automation-tab { height:39px; font-size:.75rem; }.automation-stage { grid-template-columns:1fr; border-radius:5px; }.automation-photo { min-height:245px; height:62vw; max-height:330px; }.automation-content { min-height:0; padding:25px 20px 21px; }.automation-content h3 { font-size:clamp(1.8rem,8vw,2.4rem); }.automation-description { font-size:.85rem; }.simple-process { grid-template-columns:1fr 1fr; gap:19px 12px; margin-top:8px; }.process-step { display:grid; grid-template-columns:26px 1fr; column-gap:9px; padding:0; }.process-number { grid-row:span 2; margin:2px 0 0; }.process-icon { width:27px; height:27px; margin:0 0 6px; }.process-copy { grid-column:2; }.process-copy strong { max-width:none; font-size:.75rem; }.process-line { display:none; }.automation-details span { font-size:.58rem; }.automation-footer { align-items:center; flex-direction:row; gap:8px; }.automation-footer > span { font-size:.66rem; }.automation-footer button { font-size:.7rem; }.home-trust-list { grid-template-columns:1fr; }.home-trust-item { padding:13px 0; } }

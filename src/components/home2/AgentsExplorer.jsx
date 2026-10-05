@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import {
-  ArrowRight,
   Check,
   Sparkles,
   FileText,
@@ -16,10 +15,11 @@ import {
   Megaphone,
   Headphones,
   BarChart3,
-  Stethoscope,
+  Database,
 } from "lucide-react";
 
 import "./agents-explorer.css";
+import "./automation-overrides.css";
 
 const workflows = [
   {
@@ -29,33 +29,38 @@ const workflows = [
     icon: <UserCheck />,
     accent: "blue",
 
-    title: "Resume screening, done your way.",
+    title: "Find the right candidates faster.",
 
     description:
-      "Review applications against the role criteria that matter to your team — then keep a person in control of the final shortlist.",
+      "Your recruiters shouldn't have to read every resume. Compare applicants with your criteria and send a shortlist to your team for approval.",
 
-    note: "Example workflow",
+    note: "Illustrative workflow · sample data",
 
     steps: [
       {
         label: "INPUT",
-        title: "124 applications",
+        title: "Applications arrive",
         icon: <FileText />,
       },
       {
         label: "AI WORK",
-        title: "Matches your criteria",
+        title: "AI reviews applications",
         icon: <Search />,
       },
       {
+        label: "MATCH",
+        title: "Checks your criteria",
+        icon: <Check />,
+      },
+      {
         label: "RESULT",
-        title: "18 shortlisted",
+        title: "Shortlist prepared",
         icon: <UserCheck />,
       },
       {
         label: "HUMAN",
-        title: "You approve",
-        icon: <Check />,
+        title: "Your team approves",
+        icon: <UserCheck />,
       },
     ],
 
@@ -68,45 +73,50 @@ const workflows = [
 
   {
     id: "interview",
-    name: "Interview Scheduling",
+    name: "Lead Research",
     image: "/media/2.jpg",
     icon: <CalendarDays />,
     accent: "violet",
 
-    title: "Interview scheduling, without the back-and-forth.",
+    title: "Let your sales team sell. Let AI do the research.",
 
     description:
-      "Coordinate candidates, interviewers and availability around the rules your team already follows.",
+      "Find target companies, research decision makers and prepare outreach for your sales team to review.",
 
-    note: "Example workflow",
+    note: "Illustrative workflow · sample data",
 
     steps: [
       {
         label: "INPUT",
-        title: "Candidate ready",
+        title: "Target companies",
         icon: <UserCheck />,
       },
       {
         label: "AI WORK",
-        title: "Finds suitable slots",
+        title: "Researches the market",
         icon: <CalendarDays />,
       },
       {
         label: "RESULT",
-        title: "Interview scheduled",
+        title: "Decision makers found",
         icon: <Check />,
       },
       {
+        label: "AI WORK",
+        title: "Prepares outreach",
+        icon: <FileText />,
+      },
+      {
         label: "HUMAN",
-        title: "You confirm",
+        title: "Sales team approves",
         icon: <UserCheck />,
       },
     ],
 
     detail: [
-      "Interviewer availability",
-      "Candidate preferences",
-      "Scheduling rules",
+      "Company information",
+      "Decision makers",
+      "Existing CRM records",
     ],
   },
 
@@ -122,7 +132,7 @@ const workflows = [
     description:
       "Read invoices, check the information that matters and route exceptions to the right person.",
 
-    note: "Example workflow",
+    note: "Illustrative workflow · sample data",
 
     steps: [
       {
@@ -141,6 +151,11 @@ const workflows = [
         icon: <Check />,
       },
       {
+        label: "EXCEPTIONS",
+        title: "Flags differences",
+        icon: <Search />,
+      },
+      {
         label: "HUMAN",
         title: "You approve",
         icon: <UserCheck />,
@@ -156,7 +171,7 @@ const workflows = [
 
   {
     id: "procurement",
-    name: "Purchase Requests",
+    name: "Procurement",
     image: "/media/4.jpg",
     icon: <ShoppingCart />,
     accent: "orange",
@@ -166,7 +181,7 @@ const workflows = [
     description:
       "Bring budget, policy and supplier checks together before a request reaches your team.",
 
-    note: "Example workflow",
+    note: "Illustrative workflow · sample data",
 
     steps: [
       {
@@ -200,37 +215,37 @@ const workflows = [
 
   {
     id: "sales",
-    name: "Account Research",
+    name: "Sales Outreach",
     image: "/media/5.jpg",
     icon: <Building2 />,
     accent: "blue",
 
-    title: "Account research, ready before the call.",
+    title: "Personalised outreach, ready for review.",
 
     description:
-      "Bring company information, recent activity and relevant context into one concise account brief.",
+      "Research the right companies, prepare a relevant first message and keep your team in charge of sending it.",
 
-    note: "Example workflow",
+    note: "Illustrative workflow · sample data",
 
     steps: [
       {
         label: "INPUT",
-        title: "Target account",
+        title: "Selected companies",
         icon: <Building2 />,
       },
       {
         label: "AI WORK",
-        title: "Researches the account",
+        title: "Personalises a message",
         icon: <Search />,
       },
       {
         label: "RESULT",
-        title: "Brief ready",
+        title: "Follow-up prepared",
         icon: <FileText />,
       },
       {
         label: "HUMAN",
-        title: "You decide",
+        title: "You approve and send",
         icon: <UserCheck />,
       },
     ],
@@ -244,7 +259,7 @@ const workflows = [
 
   {
     id: "marketing",
-    name: "Campaign Content",
+    name: "Marketing",
     image: "/media/6.jpg",
     icon: <Megaphone />,
     accent: "pink",
@@ -254,7 +269,7 @@ const workflows = [
     description:
       "Turn a brief into structured content while keeping your brand rules, channels and approval process in view.",
 
-    note: "Example workflow",
+    note: "Illustrative workflow · sample data",
 
     steps: [
       {
@@ -287,122 +302,34 @@ const workflows = [
   },
 
   {
-    id: "it",
-    name: "IT Helpdesk",
-    image: "/media/7.jpg",
-    icon: <Search />,
-    accent: "cyan",
-
-    title: "IT requests, resolved faster.",
-
-    description:
-      "Understand incoming requests, find the relevant information and route the right actions to the right people.",
-
-    note: "Example workflow",
-
-    steps: [
-      {
-        label: "INPUT",
-        title: "Employee request",
-        icon: <Headphones />,
-      },
-      {
-        label: "AI WORK",
-        title: "Finds the answer",
-        icon: <Search />,
-      },
-      {
-        label: "RESULT",
-        title: "Resolution ready",
-        icon: <Check />,
-      },
-      {
-        label: "HUMAN",
-        title: "Escalate if needed",
-        icon: <UserCheck />,
-      },
-    ],
-
-    detail: [
-      "Request type",
-      "Knowledge",
-      "Resolution rules",
-    ],
-  },
-
-  {
-    id: "support",
-    name: "Customer Requests",
-    image: "/media/8.jpg",
-    icon: <Headphones />,
-    accent: "purple",
-
-    title: "Customer requests, handled with context.",
-
-    description:
-      "Understand the request, find the relevant information and prepare the next action.",
-
-    note: "Example workflow",
-
-    steps: [
-      {
-        label: "INPUT",
-        title: "Customer message",
-        icon: <Headphones />,
-      },
-      {
-        label: "AI WORK",
-        title: "Checks the context",
-        icon: <Search />,
-      },
-      {
-        label: "RESULT",
-        title: "Resolution found",
-        icon: <Check />,
-      },
-      {
-        label: "HUMAN",
-        title: "Escalate exceptions",
-        icon: <UserCheck />,
-      },
-    ],
-
-    detail: [
-      "Customer history",
-      "Available information",
-      "Resolution rules",
-    ],
-  },
-
-  {
-    id: "operations",
-    name: "Operations Reporting",
+    id: "reporting",
+    name: "Reporting",
     image: "/media/9.jpg",
     icon: <BarChart3 />,
     accent: "green",
 
-    title: "Operations reporting, without the manual chase.",
+    title: "Reports prepared for review.",
 
     description:
-      "Bring information from your existing workflow together and turn it into a clear report for review.",
+      "Collect information from the tools you use, highlight what changed and prepare a clear report.",
 
-    note: "Example workflow",
+    note: "Illustrative workflow · sample data",
 
     steps: [
       {
         label: "INPUT",
-        title: "Operational data",
+        title: "Business information",
         icon: <BarChart3 />,
       },
       {
         label: "AI WORK",
-        title: "Finds key changes",
+        title: "Collects and compares",
         icon: <Search />,
       },
       {
         label: "RESULT",
         title: "Report prepared",
-        icon: <FileText />,
+        icon: <Check />,
       },
       {
         label: "HUMAN",
@@ -412,55 +339,79 @@ const workflows = [
     ],
 
     detail: [
-      "Performance",
-      "Exceptions",
-      "Recommendations",
+      "Report criteria",
+      "Source information",
+      "Human review",
     ],
   },
 
   {
-    id: "healthcare",
-    name: "Patient Follow-up",
-    image: "/media/10.jpg",
-    icon: <Stethoscope />,
-    accent: "teal",
+    id: "data-operations",
+    name: "Data Operations",
+    image: "/media/9.jpg",
+    icon: <Database />,
+    accent: "blue",
+    title: "Keep business data clean and ready to use.",
+    description: "Bring information together, spot missing or inconsistent details, and prepare updates for your team to review.",
+    note: "Illustrative workflow · sample data",
+    steps: [
+      { label: "INPUT", title: "Information arrives", icon: <Database /> },
+      { label: "AI WORK", title: "Checks and organises", icon: <Search /> },
+      { label: "RESULT", title: "Updates prepared", icon: <FileText /> },
+      { label: "HUMAN", title: "You review", icon: <UserCheck /> },
+    ],
+    detail: ["Your data rules", "Existing records", "Team review"],
+  },
 
-    title: "Patient follow-up, with less admin.",
+  {
+    id: "support",
+    name: "Customer Support",
+    image: "/media/8.jpg",
+    icon: <Headphones />,
+    accent: "purple",
+
+    title: "Give customers a helpful answer sooner.",
 
     description:
-      "Help care teams organize follow-up information while keeping clinical decisions with the people responsible for care.",
+      "Check a customer’s message against your information, draft a response and hand exceptions to your team.",
 
-    note: "Example workflow",
+    note: "Illustrative workflow · sample data",
 
     steps: [
       {
         label: "INPUT",
-        title: "Follow-up due",
-        icon: <Stethoscope />,
+        title: "Customer message",
+        icon: <Headphones />,
       },
       {
         label: "AI WORK",
-        title: "Organizes information",
+        title: "Checks the details",
         icon: <Search />,
       },
       {
         label: "RESULT",
-        title: "Next step prepared",
+        title: "Response drafted",
         icon: <FileText />,
       },
       {
+        label: "HANDOFF",
+        title: "Escalate when needed",
+        icon: <UserCheck />,
+      },
+      {
         label: "HUMAN",
-        title: "Care team decides",
+        title: "Your team approves",
         icon: <UserCheck />,
       },
     ],
 
     detail: [
-      "Patient context",
-      "Follow-up status",
-      "Care-team review",
+      "Customer information",
+      "Resolution rules",
+      "Human handover",
     ],
   },
+
 ];
 
 
@@ -485,23 +436,17 @@ export default function AgentsExplorer() {
 
         <div>
 
-          <span className="agents-eyebrow">
-            AI AUTOMATION
-          </span>
+          <span className="agents-eyebrow">AUTOMATION EXPLORER</span>
 
           <h2>
-            AI that gets the
-            <br />
-            work done.
+            What can we automate for you?
           </h2>
 
         </div>
 
 
         <p>
-          Give repetitive work to AI.
-          <br />
-          Keep important decisions with your team.
+          Bring us a repetitive job. We build the system around it.
         </p>
 
       </div>
@@ -511,12 +456,17 @@ export default function AgentsExplorer() {
           AUTOMATION SELECTOR
           ===================================================== */}
 
-      <div className="automation-selector">
+      <div className="automation-selector" role="tablist" aria-label="Jobs MAD can automate">
 
         {workflows.map((item, index) => (
 
           <button
             key={item.id}
+            type="button"
+            role="tab"
+            aria-selected={index === active}
+            id={`automation-tab-${item.id}`}
+            aria-controls="automation-workflow-panel"
             onClick={() => setActive(index)}
             className={
               index === active
@@ -544,7 +494,7 @@ export default function AgentsExplorer() {
           MAIN EXPERIENCE
           ===================================================== */}
 
-      <div className="automation-stage">
+      <div id="automation-workflow-panel" className="automation-stage" role="tabpanel" aria-labelledby={`automation-tab-${workflow.id}`}>
 
 
         {/* IMAGE */}
@@ -569,7 +519,7 @@ export default function AgentsExplorer() {
 
 
         {/* CONTENT */}
-        <div className="automation-content">
+        <div className="automation-content" key={workflow.id}>
 
           <div className="workflow-label">
             {workflow.note}
@@ -594,7 +544,7 @@ export default function AgentsExplorer() {
 
               <div
                 className="process-step"
-                key={step.label}
+                key={`${step.label}-${index}`}
               >
 
                 <div className="process-number">
@@ -653,15 +603,7 @@ export default function AgentsExplorer() {
           {/* BOTTOM */}
 
           <div className="automation-footer">
-
-            <span>
-              Built around your workflow.
-            </span>
-
-            <button>
-              See workflow
-              <ArrowRight size={15} />
-            </button>
+            <span>Illustrative example · your team stays in control.</span>
 
           </div>
 

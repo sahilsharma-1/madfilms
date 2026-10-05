@@ -7,15 +7,15 @@ import { Photo, Win, Pill, Flow, EASE, useLive, useStepper } from "./ui";
 /* 04 CUSTOM AUTOMATION: company in the middle, five inputs flow into it, one result comes out. */
 export function CustomAutomation() {
   const [ref, live] = useLive();
-  const ins = ["Your systems", "Your data", "Your approvals", "Your teams", "Your content", "Your processes"];
+  const ins = ["Your rules", "Your tools", "Your data", "Your approval"];
   const i = useStepper(ins.length, 1100, live);
   return (
     <section id="custom" data-tone="light" aria-labelledby="h2-cu" className="h2-sec" ref={ref} style={{ background: "#fff" }} data-world="blue">
       <div className="h2-wrap grid items-center gap-8 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <p className="h2-eyebrow">Custom automation</p>
-          <h2 id="h2-cu" className="h2-h2 mt-3">Your workflow. Your rules. Your AI.</h2>
-          <p className="h2-lead mt-4">We don&rsquo;t force every company into the same workflow. We build around how you already work.</p>
+          <h2 id="h2-cu" className="h2-h2 mt-3">Not another AI tool. Your AI system.</h2>
+          <p className="h2-lead mt-4">We build agents around your data, your analytics, your tools, your rules and your team&rsquo;s approval process.</p>
           <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-1.5 text-[.95rem] font-medium">
             {ins.map((t, k) => <li key={t} className="flex items-center gap-2 border-b py-1.5 transition-colors" style={{ borderColor: "var(--line)", color: k === i ? "var(--w-acc)" : "var(--ink)" }}><span className="h-1.5 w-1.5 rounded-full" style={{ background: k === i ? "var(--w-acc)" : "var(--line)" }} />{t}</li>)}
           </ul>
@@ -28,7 +28,7 @@ export function CustomAutomation() {
               </div>
               <svg viewBox="0 0 60 120" className="col-span-1 h-full w-full" aria-hidden preserveAspectRatio="none">{[15, 45, 75, 105].map((y) => <path key={y} d={`M0 ${y} C30 ${y} 30 60 60 60`} fill="none" stroke="#2f6fe4" strokeWidth="1.5" className="h2-dash" />)}</svg>
               <div className="col-span-4 grid aspect-square place-items-center rounded-2xl text-center" style={{ background: "var(--w-dark)", color: "#fff" }}>
-                <div><p className="text-[.6rem] uppercase tracking-[.14em] opacity-70">Built for</p><p className="mt-1 text-[1rem] font-semibold leading-tight md:text-[1.3rem]">Your company</p><p className="mt-2 text-[.7rem] opacity-80">Custom AI automation</p></div>
+                <div><p className="text-[.6rem] uppercase tracking-[.14em] opacity-70">Built for</p><p className="mt-1 text-[1rem] font-semibold leading-tight md:text-[1.3rem]">Your MAD agent</p><p className="mt-2 text-[.7rem] opacity-80">Custom AI system</p></div>
               </div>
               <svg viewBox="0 0 30 20" className="col-span-1 w-full" aria-hidden><path d="M0 10H26M20 4L27 10L20 16" fill="none" stroke="#2f6fe4" strokeWidth="1.5" className="h2-dash" /></svg>
               <Win title="Result" className="col-span-2 !rounded-lg" tag="Example"><Pill>Done</Pill><p className="mt-1 text-[.62rem] leading-tight">Approved by your team</p></Win>
@@ -42,12 +42,12 @@ export function CustomAutomation() {
 
 /* 05 SEE IT IN ACTION: a six-step workflow that plays, with a clickable step list. */
 const STEPS = [
-  { k: "You ask", ui: "ask", t: "“Prepare the Q3 supplier review.”" },
-  { k: "AI understands", ui: "think", t: "Goal: compare 12 suppliers. Needs: spend, delivery, contracts." },
-  { k: "AI researches", ui: "src", t: "Reading contracts, ERP exports and past reviews." },
-  { k: "AI works", ui: "work", t: "Scoring suppliers and drafting findings." },
-  { k: "AI delivers", ui: "doc", t: "Review pack ready: summary, table, 3 risks." },
-  { k: "You approve", ui: "ok", t: "Approve, edit or send back." },
+  { k: "Tell us what needs to change", ui: "ask", t: "“Find healthcare companies in India and prepare outreach for our sales team.”" },
+  { k: "We understand your workflow", ui: "think", t: "We learn the steps, people, rules and decisions involved today." },
+  { k: "We design the system", ui: "src", t: "We map the information, tools and approval points the workflow needs." },
+  { k: "We build and integrate it", ui: "work", t: "The agent researches companies and prepares a tailored first message." },
+  { k: "We launch", ui: "doc", t: "Your team gets a working process to review and use." },
+  { k: "We improve it", ui: "ok", t: "Your feedback helps us adjust the workflow as your needs change." },
 ];
 export function WatchAI() {
   const [ref, live] = useLive();
@@ -59,8 +59,8 @@ export function WatchAI() {
     <section id="watch" data-tone="dark" aria-labelledby="h2-wa" className="h2-sec" ref={ref} style={{ background: "#08142b", color: "#fff" }} data-world="blue">
       <div className="h2-wrap grid gap-8 lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <p className="h2-eyebrow" style={{ color: "#8fb4ff" }}>See it in action</p>
-          <h2 id="h2-wa" className="h2-h2 mt-3">Watch AI do the work.</h2>
+          <p className="h2-eyebrow" style={{ color: "#8fb4ff" }}>How MAD works</p>
+          <h2 id="h2-wa" className="h2-h2 mt-3">You bring the problem. We build the solution.</h2>
           <p className="mt-3 text-[.7rem] uppercase tracking-[.1em] opacity-60">Illustrative workflow</p>
           <ol className="mt-5">{STEPS.map((x, k) => (
             <li key={x.k}><button onClick={() => setPin(k === pin ? null : k)} aria-current={k === i} className="flex w-full items-center gap-3 border-b py-2.5 text-left transition-opacity" style={{ borderColor: "rgba(255,255,255,.12)", opacity: k === i ? 1 : 0.45 }}>
@@ -89,25 +89,23 @@ export function WatchAI() {
 
 /* 06 WORKFLOW GALLERY: horizontal scroller, deliberately unequal cards. */
 const WF = [
-  { n: "Recruiting", Icon: Users, w: "blue", p: "hr", f: "CV > Shortlist > Interview", o: "Shortlists ready for review", wd: 22 },
-  { n: "Finance", Icon: ReceiptText, w: "green", p: "finance", f: "Invoice > Match > Approve", o: "Invoices checked before approval", wd: 17 },
-  { n: "Procurement", Icon: ShoppingCart, w: "gold", p: "procurement", f: "Request > Checks > Sign-off", o: "Requests arrive pre-checked", wd: 15 },
-  { n: "Sales", Icon: TrendingUp, w: "blue", p: "sales", f: "Lead > Brief > CRM", o: "Account briefs before calls", wd: 22 },
-  { n: "Marketing", Icon: Megaphone, w: "red", p: "marketing", f: "Brief > Content > Publish", o: "A first campaign draft", wd: 17 },
-  { n: "Customer Support", Icon: Headset, w: "green", p: "support", f: "Message > Check > Reply", o: "Routine questions handled", wd: 15 },
-  { n: "Operations", Icon: Activity, w: "gold", p: "operations", f: "Monitor > Flag > Fix", o: "Issues ranked by impact", wd: 22 },
-  { n: "Healthcare", Icon: HeartPulse, w: "green", p: "healthcare", f: "Request > Slot > Follow-up", o: "Admin off the care team", wd: 17 },
-  { n: "Reporting", Icon: FileText, w: "blue", p: null, f: "Sources > Draft > Approve", o: "Monthly reports assembled", wd: 15 },
-  { n: "Research", Icon: Search, w: "gold", p: null, f: "Question > Sources > Brief", o: "Briefs in minutes", wd: 17 },
-  { n: "Content", Icon: Megaphone, w: "red", p: null, f: "Idea > Draft > Edit", o: "Drafts for every channel", wd: 15 },
-  { n: "Approvals", Icon: UserCheck, w: "green", p: null, f: "Request > Route > Decide", o: "Nothing waits unseen", wd: 17 },
+  { n: "Research", Icon: Search, w: "blue", p: "sales", f: "Question > Sources > Brief", o: "Useful information, gathered in one place", wd: 22 },
+  { n: "Data entry", Icon: FileText, w: "green", p: "finance", f: "Document > Read > Record", o: "Information entered into your tools", wd: 17 },
+  { n: "Lead qualification", Icon: TrendingUp, w: "blue", p: null, f: "Lead > Check > Prioritise", o: "The right leads ready for follow-up", wd: 15 },
+  { n: "Document processing", Icon: ReceiptText, w: "gold", p: "procurement", f: "Receive > Extract > Check", o: "Documents reviewed against your rules", wd: 22 },
+  { n: "Employee onboarding", Icon: Users, w: "red", p: "hr", f: "New starter > Tasks > Follow-up", o: "The right steps, on time", wd: 17 },
+  { n: "Reporting", Icon: Activity, w: "green", p: null, f: "Sources > Summary > Review", o: "Reports prepared for your team", wd: 15 },
+  { n: "Customer requests", Icon: Headset, w: "blue", p: "support", f: "Message > Check > Respond", o: "Routine questions handled with context", wd: 22 },
+  { n: "Procurement", Icon: ShoppingCart, w: "gold", p: null, f: "Request > Check > Approve", o: "Requests arrive ready for review", wd: 17 },
+  { n: "Content operations", Icon: Megaphone, w: "red", p: "marketing", f: "Brief > Draft > Approve", o: "First drafts follow your brand rules", wd: 15 },
+  { n: "Internal knowledge", Icon: Search, w: "green", p: "it", f: "Question > Search > Answer", o: "Answers drawn from approved sources", wd: 17 },
 ];
 export function WorkflowScroller() {
   return (
     <section id="workflows" data-tone="light" aria-labelledby="h2-wf" className="h2-sec !pb-10" style={{ background: "#f5f1e8" }}>
       <div className="h2-wrap flex flex-wrap items-end justify-between gap-3">
-        <h2 id="h2-wf" className="h2-h2 max-w-3xl">What could your team stop doing manually?</h2>
-        <p className="h2-lead !max-w-xs">Scroll the list. Every one is an example, not a product.</p>
+        <div><p className="h2-eyebrow">More examples</p><h2 id="h2-wf" className="h2-h2 mt-3 max-w-3xl">What else takes too much time?</h2></div>
+        <p className="h2-lead !max-w-xs">A few more jobs that can be shaped around your team.</p>
       </div>
       <div className="h2-hs mt-8" tabIndex={0} role="region" aria-label="Workflow examples, scrollable">
         {WF.map((c, k) => {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FaLinkedin, FaYoutube, FaInstagram } from "react-icons/fa6";
-import { SERVICES, INDUSTRIES, EMAIL } from "./content";
+import { INDUSTRIES, EMAIL } from "./content";
 
 // Set real profile URLs here. Entries left as "#" are not rendered, so no dead links ship.
 const SOCIALS = [
@@ -9,6 +9,14 @@ const SOCIALS = [
   { icon: FaInstagram, label: "Instagram", href: "#" },
 ].filter((s) => s.href && s.href !== "#");
 const COMPANY = [["Work", "/#work"], ["About", "/#about"], ["Careers", `mailto:${EMAIL}?subject=Careers`], ["Contact", "/#contact"]];
+const SOLUTIONS = [
+  ["AI Agents", "/#agents"],
+  ["Business Automation", "/#agents"],
+  ["SaaS & Software", "/#packages"],
+  ["Data & Intelligence", "/#capabilities"],
+  ["Creative & Motion", "/#madfilms"],
+  ["UGC & Content", "/#madfilms"],
+];
 
 const Col = ({ title, children }) => (
   <nav aria-label={title}>
@@ -24,13 +32,13 @@ export default function Footer() {
       <div className="mx-wrap pt-8">
         <div className="grid gap-12 border-t py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]" style={{ borderColor: "var(--line)" }}>
           <div>
-            <p className="max-w-[16rem] text-[1.35rem] leading-snug tracking-tight">AI systems for the businesses building what comes next.</p>
+            <p className="max-w-[16rem] text-[1.35rem] leading-snug tracking-tight">Technology and creative systems for the work your business needs done.</p>
             <a href={`mailto:${EMAIL}`} className="mt-6 inline-block text-[.95rem] underline underline-offset-4" style={{ color: "var(--soft)" }}>{EMAIL}</a>
             {SOCIALS.length > 0 && (
               <div className="mt-6 flex items-center gap-5">{SOCIALS.map((s) => (<a key={s.label} href={s.href} aria-label={s.label} className="transition-colors hover:text-white" style={{ color: "var(--mute)" }}><s.icon size={17} /></a>))}</div>
             )}
           </div>
-          <Col title="What we do">{SERVICES.map((s) => <A key={s.id} href={s.href}>{s.name}</A>)}</Col>
+          <Col title="Solutions">{SOLUTIONS.map(([label, href]) => <A key={label} href={href}>{label}</A>)}</Col>
           <Col title="Industries">{INDUSTRIES.map((s) => <A key={s.id} href="/#industries">{s.name}</A>)}</Col>
           <Col title="Company">{COMPANY.map(([l, h]) => <A key={l} href={h}>{l}</A>)}</Col>
         </div>
