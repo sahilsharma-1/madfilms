@@ -10,11 +10,11 @@ import { EASE } from "../home/shared";
 import { TASKS, WORKERS, PACKAGES, SAAS, JOURNEY, STEPS, INTEGRATIONS, WORKS } from "./data";
 import "./home3.css";
 
-const Reveal = ({ children, className = "", delay = 0 }) => {
+export const Reveal = ({ children, className = "", delay = 0 }) => {
   const still = useReducedMotion();
   return <motion.div className={className} initial={still ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-8%" }} transition={{ duration: 0.7, delay, ease: EASE }}>{children}</motion.div>;
 };
-const Head = ({ eyebrow, title, lead, dark }) => (
+export const Head = ({ eyebrow, title, lead, dark }) => (
   <Reveal className="m3-head"><p className="m3-eyebrow">{eyebrow}</p><h2 className="m3-h2">{title}</h2>{lead && <p className={`m3-lead ${dark ? "on-dark" : ""}`}>{lead}</p>}</Reveal>
 );
 

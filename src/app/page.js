@@ -1,5 +1,6 @@
 import Navbar from "@/components/MAD COMPANY/Navbar";
-import { HeroX, Cards, VideoBand, Automate, CustomAI, Workers, HowCustom, Packages, StudioIntro, Journey, Work, Process, RoiAndContact } from "@/components/home3/Home3";
+import { HeroX, Cards, VideoBand, Automate, CustomAI, HowCustom, Packages, StudioIntro, Journey, Work, Process, RoiAndContact } from "@/components/home3/Home3";
+import AgentWorkforce from "@/components/agents/AgentWorkforce";
 import { MadFilmsBand } from "@/components/home2/Sections2";
 import Footer from "@/components/home/Footer";
 import "@/components/home/home.css";
@@ -37,7 +38,7 @@ export default function Home() {
       <VideoBand />
       <Automate />
       <CustomAI />
-      <Workers />
+      <AgentWorkforce />
       <HowCustom />
       <Packages />
       <StudioIntro />
