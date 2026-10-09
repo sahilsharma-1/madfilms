@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ChevronLeft, ChevronRight, ShieldCheck, GitBranch, UserCheck, FileCheck2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, ShieldCheck, GitBranch, UserCheck, FileCheck2, Film, Layers, Smartphone, Box, Sparkles, Clapperboard, Share2 } from "lucide-react";
 import { Photo, Win, Pill, Avatar, EASE, useLive, useStepper } from "./ui";
 import VimeoFeature from "./VimeoFeature";
 
@@ -42,7 +42,16 @@ export function MarketingFlow() {
 
 /* 08 MAD FILMS: dark and cinematic. CTA opens the EXISTING /studio/madfilms route. */
 export function MadFilmsBand() {
-  const items = ["Video editing", "Motion graphics", "UGC", "3D", "AI video", "Product films", "Social content"];
+  // Concept tiles instead of photo thumbnails: icon + name + one plain line each. No client claims.
+  const items = [
+    [Film, "Video editing", "Cuts, pacing and polish for brand and product videos."],
+    [Layers, "Motion graphics", "Animated identities, explainers and title sequences."],
+    [Smartphone, "UGC", "Creator-style content made for social feeds."],
+    [Box, "3D", "Product visuals and scenes built in three dimensions."],
+    [Sparkles, "AI video", "Generated and AI-assisted footage for ideas that need speed."],
+    [Clapperboard, "Product films", "Short films that show what a product does and why it matters."],
+    [Share2, "Social content", "Formats and series planned for each channel."],
+  ];
   return (
     <section id="madfilms" data-tone="dark" aria-labelledby="h2-mf" className="h2-film h2-grain relative overflow-hidden h2-sec" data-world="film">
       <div aria-hidden className="absolute inset-0" style={{ background: "radial-gradient(60% 60% at 80% 20%, rgba(255,90,31,.25), transparent 70%), radial-gradient(40% 40% at 0% 100%, rgba(200,30,20,.2), transparent 70%)" }} />
@@ -50,20 +59,19 @@ export function MadFilmsBand() {
         <p className="h2-eyebrow" style={{ color: "#ff7a45" }}>MAD STUDIO · A CAPABILITY OF MAD COMPANY</p>
         <h2 id="h2-mf" className="mt-3 max-w-6xl font-semibold leading-[.95] tracking-[-.05em]" style={{ fontSize: "clamp(2.7rem,7vw,6.8rem)" }}>And when the work needs to be seen,<br /><span style={{ color: "#ff8054" }}>we make that too.</span></h2>
         <p className="mt-5 max-w-2xl text-[1rem] leading-relaxed text-white/65 md:text-[1.15rem]">From product films to motion systems, UGC and AI-powered content, MAD Studio helps businesses turn ideas into visual experiences.</p>
-        <div className="mt-8 grid grid-cols-12 gap-3 md:gap-4">
-          <Photo slot="madFilms" className="col-span-12 h-56 rounded-[6px] md:h-[24rem] lg:col-span-7" />
-          <div className="col-span-7 lg:col-span-3">
-            <Photo slot="filmmaker" className="h-44 rounded-[6px] md:h-[24rem]" />
-          </div>
-          <div className="col-span-5 lg:col-span-2">
-            <Photo slot="creator" className="h-44 rounded-[6px] md:h-[24rem]" />
-          </div>
-        </div>
+        <ul className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+          {items.map(([Icon, name, line], k) => (
+            <li key={name} className={`rounded-[6px] border p-4 md:p-5 ${k === items.length - 1 ? "col-span-2" : ""}`} style={{ borderColor: "rgba(255,255,255,.16)", background: "linear-gradient(160deg, rgba(255,128,84,.10), rgba(255,255,255,.02))" }}>
+              <span className="grid h-10 w-10 place-items-center rounded-full" style={{ background: "rgba(255,128,84,.16)", color: "#ff8054" }}><Icon size={18} strokeWidth={1.7} aria-hidden /></span>
+              <p className="mt-4 text-[1.05rem] font-semibold tracking-[-.02em]">{name}</p>
+              <p className="mt-1 text-[.82rem] leading-snug text-white/60">{line}</p>
+            </li>
+          ))}
+        </ul>
         <VimeoFeature />
         <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
-            <ul className="flex max-w-3xl flex-wrap gap-2">{items.map((t) => <li key={t} className="rounded-full border px-3 py-1.5 text-[.78rem]" style={{ borderColor: "rgba(255,255,255,.22)" }}>{t}</li>)}</ul>
-            <p className="mt-4 text-[.75rem] uppercase tracking-[.1em] text-white/45">Selected work · NESTLEVEL Digital Podcast · Recruiter Toolkit · Talent Attraction Insights</p>
+            <p className="text-[.75rem] uppercase tracking-[.1em] text-white/45">Selected work · NESTLEVEL Digital Podcast · Recruiter Toolkit · Talent Attraction Insights</p>
           </div>
           <Link href="/studio/madfilms" className="h2-btn h2-btn-orange">Explore MAD Studio <span aria-hidden>→</span></Link>
         </div>

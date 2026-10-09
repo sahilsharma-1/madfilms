@@ -36,9 +36,9 @@ export default function Home() {
       <HeroX />
       <Cards />
       <VideoBand />
-      <Automate />
       <CustomAI />
       <AgentWorkforce />
+      <Automate />
       <HowCustom />
       <Packages />
       <StudioIntro />

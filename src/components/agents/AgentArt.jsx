@@ -19,7 +19,10 @@ export function AgentIcon({ name, size = 18 }) {
  * Remount with a new `key` per image so only the selected image is requested.
  */
 export function ImageSlot({ src, alt, label, icon, number, className = "", sizes, priority = false }) {
-  const [failed, setFailed] = useState(false);
+  const list = Array.isArray(src) ? src : src ? [src] : [];
+  const [i, setI] = useState(0);
+  const cur = list[i];
+  const failed = !cur;
   return (
     <div className={`wf-art ${className}`} data-missing={failed ? "1" : "0"}>
       <div className="wf-art-ph" aria-hidden>
@@ -28,8 +31,8 @@ export function ImageSlot({ src, alt, label, icon, number, className = "", sizes
         {number != null && <span className="wf-art-no">{String(number).padStart(2, "0")}</span>}
         {label && <span className="wf-art-label">{label}</span>}
       </div>
-      {src && !failed && (
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} loading={priority ? undefined : "lazy"} className="wf-art-img" onError={() => setFailed(true)} />
+      {cur && (
+        <Image key={cur} src={cur} alt={alt} fill sizes={sizes} priority={priority} loading={priority ? undefined : "lazy"} className="wf-art-img" onError={() => setI((v) => v + 1)} />
       )}
     </div>
   );

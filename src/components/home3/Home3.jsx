@@ -35,7 +35,7 @@ export function Hero3() {
           <ol className="m3-trail" aria-label="How it works"><li>Your business</li><li>MAD AI</li><li>Understand</li><li>Work</li><li>Report</li><li><b>You approve</b></li></ol>
         </div>
         <div className="m3-hero-visual">
-          <Image src="/media/1.jpg" alt="A business leader reviewing work in an office" fill priority sizes="(max-width: 900px) 100vw, 46vw" className="m3-cover" />
+          <Image src="/carousel/1.jpg" alt="A business leader reviewing work in an office" fill priority sizes="(max-width: 900px) 100vw, 46vw" className="m3-cover" />
           <div className="m3-hero-card" style={{ "--d": d.dark, "--s": d.soft }}>
             <div className="m3-card-top"><small>Example workflow</small><AnimatePresence mode="wait"><motion.b key={d.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.3 }}>{d.label}</motion.b></AnimatePresence></div>
             <ul>{d.steps.map((s, k) => <motion.li key={d.id + k} initial={{ opacity: 0.2 }} animate={{ opacity: 1 }} transition={{ delay: k * 0.35 }}><i />{s}</motion.li>)}</ul>
@@ -190,7 +190,7 @@ export function RoiAndContact() {
 
 /* ---------- Accenture-style black opening: animated headline over a moving gradient, then tall editorial cards, then the company video ---------- */
 export const VIDEO_ID = "76979871"; // PLACEHOLDER Vimeo id. Replace with MAD's own video id.
-// Card images: save Shutterstock files as /public/media/c1.jpg ... c8.jpg. Until then each card shows its gradient.
+// Card images: save Shutterstock files as /public/carousel/c1.jpg ... c8.jpg. Until then each card shows its gradient.
 const CARDS = [
   { k: "AI & Automation", t: "Agents that take repetitive work off your team", d: "Resume screening, lead research, invoices, support and reporting. Built around your workflow, with your people approving.", href: "#automate", img: "c1", a: "#8a2342", b: "#1b2a5a" },
   { k: "Custom AI", t: "An AI system built around your data and rules", d: "Not another tool. Agents connected to your data, your tools, your rules and the way your team works.", href: "#custom", img: "c2", a: "#1f4fa8", b: "#0a1330" },
@@ -202,9 +202,9 @@ const CARDS = [
   { k: "How we work", t: "You bring the problem. We build the solution.", d: "Six clear steps from describing the job to launching it and improving it.", href: "#process", img: "c8", a: "#b88a2c", b: "#1a1206" },
 ];
 
-const FALL = { c1: ["/media/2.jpg", IMG.hr.remote], c2: ["/media/7.jpg", IMG.it.remote], c3: ["/media/3.jpg", IMG.finance.remote], c4: ["/media/4.jpg", IMG.procurement.remote], c5: ["/media/5.jpg", IMG.sales.remote], c6: ["/media/11.jpg", IMG.creator.remote], c7: ["/media/14.jpg", IMG.story1.remote], c8: ["/media/17.jpg", IMG.human.remote] };
+const FALL = { c1: ["/images/Carousel/1.jpg", IMG.hr.remote], c2: ["/carousel/2.jpg", IMG.it.remote], c3: ["/carousel/3.jpg", IMG.finance.remote], c4: ["/carousel/2.jpg", IMG.procurement.remote], c5: ["/carousel/5.jpg", IMG.sales.remote], c6: ["/carousel/11.jpg", IMG.creator.remote], c7: ["/carousel/14.jpg", IMG.story1.remote], c8: ["/carousel/17.jpg", IMG.human.remote] };
 function Slot({ id, alts = [], className = "" }) {
-  const list = [`/media/${id}.jpg`, `/media/${id}.jpeg`, `/media/${id}.png`, `/media/${id}.webp`, ...alts];
+  const list = [`/carousel/${id}.jpg`, `/carousel/${id}.jpeg`, `/carousel/${id}.png`, `/carousel/${id}.webp`, ...alts];
   const [i, setI] = useState(0);
   const ref = useRef(null);
   const src = list[i];
@@ -301,15 +301,42 @@ export function Cards() {
   );
 }
 
+
 export function VideoBand() {
   const [play, setPlay] = useState(false);
+
+  const VIDEO_ID = "1215370497";
+
   return (
-    <section className="m3-sec m3-vid" data-tone="light" aria-labelledby="m3-vd">
+    <section
+      className="m3-sec m3-vid"
+      data-tone="light"
+      aria-labelledby="m3-vd"
+    >
       <div className="m3-wrap m3-vid-grid">
-        <Reveal><p className="m3-eyebrow">What MAD does</p><h2 id="m3-vd" className="m3-h2">One company. Technology that works, and stories that move.</h2><p className="m3-lead">A short look at how MAD builds AI, software and creative work around your business.</p></Reveal>
+        <Reveal>
+          <p className="m3-eyebrow">What MAD does</p>
+
+          <h2 id="m3-vd" className="m3-h2">
+            One company. Technology that works, and stories that move.
+          </h2>
+
+          <p className="m3-lead">
+            A short look at how MAD builds AI, software and creative work
+            around your business.
+          </p>
+        </Reveal>
+
         <Reveal delay={0.1} className="m3-vid-frame">
-          {play ? <iframe src={`https://player.vimeo.com/video/${VIDEO_ID}?autoplay=1&title=0&byline=0&portrait=0`} title="What MAD does" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen /> :
-            <button type="button" onClick={() => setPlay(true)} aria-label="Play video"><Slot id="video" alts={["/media/13.jpg", IMG.madFilms.remote]} className="m3-card-img" /><span className="m3-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button>}
+          <div className="m3-vimeo-wrap">
+            <iframe
+              src={`https://player.vimeo.com/video/${VIDEO_ID}?autoplay=${play ? 1 : 0}&title=0&byline=0&portrait=0&badge=0`}
+              title="Nestlé Talent Attraction Motion Video"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
         </Reveal>
       </div>
     </section>

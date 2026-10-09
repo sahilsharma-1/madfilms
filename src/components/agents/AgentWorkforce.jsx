@@ -73,7 +73,7 @@ export default function AgentWorkforce() {
                 <p>{industry.line}</p>
               </div>
               {industry.image && (
-                <ImageSlot key={industry.image} src={`/images/industries/${industry.image}.png`} alt={`${industry.label} workplace`} label={industry.label} className="wf-band-art" sizes="(max-width: 900px) 92vw, 30vw" />
+                <ImageSlot key={industry.image} src={["jpg", "png", "jpeg", "webp"].map((x) => `/images/industries/${industry.image}.${x}`)} alt={`${industry.label} workplace`} label={industry.label} className="wf-band-art" sizes="(max-width: 900px) 92vw, 30vw" />
               )}
             </motion.div>
           </AnimatePresence>

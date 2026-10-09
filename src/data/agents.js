@@ -29,7 +29,12 @@ export const ex = (channel, lines) => ({
   }),
 });
 
-const img = (n) => `/images/agents/agent-${String(n).padStart(2, "0")}.png`;
+// Image candidates, tried in order until one loads. Your files are named agent-NN-slug.jpg; plain agent-NN.jpg/.png also work.
+const SLUGS = {1: "missed-call-recovery", 2: "lead-response", 3: "quote-follow-up", 4: "appointment-recovery", 5: "customer-winback", 6: "review-reputation", 7: "ai-receptionist", 8: "whatsapp-concierge", 9: "customer-support", 10: "order-status", 11: "client-onboarding", 12: "document-chase", 13: "field-service", 14: "inventory-exception", 15: "sales-research", 16: "rfp-tender", 17: "procurement", 18: "finance-collections", 19: "reporting-insights", 20: "executive-intelligence"};
+const img = (n) => {
+  const id = String(n).padStart(2, "0");
+  return [`/images/agents/agent-${id}-${SLUGS[n]}.jpg`, `/images/agents/agent-${id}-${SLUGS[n]}.png`, `/images/agents/agent-${id}.jpg`, `/images/agents/agent-${id}.png`];
+};
 
 const A = (n, id, icon, name, category, rest) => ({
   id, n, icon, name, category, accent: CAT_ACCENT[category], image: img(n), featured: false, ...rest,

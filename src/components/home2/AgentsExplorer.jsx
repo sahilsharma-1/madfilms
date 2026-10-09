@@ -25,7 +25,7 @@ const workflows = [
   {
     id: "resume",
     name: "Resume Screening",
-    image: "/media/2.jpg",
+    image: "/images/Carousel/1.jpg",
     icon: <UserCheck />,
     accent: "blue",
 
